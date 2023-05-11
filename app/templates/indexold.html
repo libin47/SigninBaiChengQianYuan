@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>院校推荐（测试版）</title>
+    <script src="static/jquery.min.js"></script>
+    <link rel="stylesheet" href="static/swiper-bundle.min.css">
+    <script src="static/swiper-bundle.min.js"> </script>
+    <style type="text/css">
+        input,
+        select {
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+
+        .result-con {
+            width: 100%;
+            /* float: left; */
+        }
+
+        .tab {
+            width: 1000px;
+            margin-top: 20px;
+        }
+
+        .swiper-container {
+            width: 100%;
+            text-align: center;
+            height: 100%;
+        }
+        .swiper-wrapper{
+            width: 100%;
+            text-align: center;
+            height: 100%;
+        }
+        .swiper-slide{
+            width: 100%;
+            text-align: center;
+            height: 100%;
+        }
+
+        .tab {
+            background: #efefef;
+        }
+
+        .tab span {
+            display: inline-block;
+            height: 50px;
+            width: 200px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .tab .checked {
+            background: #999;
+            color: #fff;
+        }
+        .table{  width: 100%; height:100%; border-collapse:collapse;    border-spacing:0;}
+        .table thead{display: block; width: 99%; background-color: lightgray;}
+        .table tbody{display: block; height:550px;  width: 99%; border: 1px solid #ddd; overflow: auto; }
+        .table td,.table th { width: 200px  ; border-bottom: none; border-left: none; border-right: 1px solid #CCC; border-top: 1px solid #DDD; padding: 2px 3px 3px 4px }
+        .table tr{ border-bottom: 1px solid #B74; }
+    </style>
+</head>
+
+<body>
+<a target="_blank" href="/admin" >打开管理页面</a>
+    <p><span>省份</span><span>
+            <select name="province_id" id="province_id">
+                <option value="1">北京市</option>
+                <option value="2">天津市</option>
+                <option value="3">河北省</option>
+                <option value="4">山西省</option>
+                <option value="5">内蒙古自治区</option>
+                <option value="6">辽宁省</option>
+                <option value="7">吉林省</option>
+                <option value="8">黑龙江省</option>
+                <option value="9">上海市</option>
+                <option value="10">江苏省</option>
+                <option value="11">浙江省</option>
+                <option value="12">安徽省</option>
+                <option value="13">福建省</option>
+                <option value="14">江西省</option>
+                <option value="15">山东省</option>
+                <option value="16">河南省</option>
+                <option value="17">湖北省</option>
+                <option value="18">湖南省</option>-->
+                <option value="19">广东省</option>
+                <option value="20">海南省</option>
+                <option value="21">广西壮族自治区</option>
+                <option value="22">甘肃省</option>
+                <option value="23">陕西省</option>
+                <option value="24">新疆维吾尔自治区</option>
+                <option value="25">青海省</option>
+                <option value="26">宁夏回族自治区</option>
+                <option value="27">重庆市</option>
+                <option value="28">四川省</option>
+                <option value="29">贵州省</option>
+                <option value="30">云南省</option>
+            </select>
+            
+        </span>
+    </p>
+
+    <p id="wenli_print_old" style="display: none"><span>文理</span><span>
+            <select name="wenli" id="wenli_old">
+                <option value="1">文科</option>
+                <option value="2">理科</option>
+            </select></span></p>
+    <p id="wenli_print_new" style="display: none"><span>文理</span><span>
+            <select name="wenli" id="wenli_new">
+                <option value="21">历史</option>
+                <option value="22">物理</option>
+            </select></span></p>
+
+    <p id="demandinput_6"><span>选择科目</span>
+        <span>
+        <input type="checkbox" name="demand6" value="物理">物理
+        <input type="checkbox" name="demand6" value="生物">生物
+        <input type="checkbox" name="demand6" value="化学">化学
+        <input type="checkbox" name="demand6" value="历史">历史
+        <input type="checkbox" name="demand6" value="政治">政治
+        <input type="checkbox" name="demand6" value="地理">地理
+        </span></p>
+    <p id="demandinput_4" style="display: none"><span>选择科目</span>
+        <span>
+        <input type="checkbox" name="demand4" value="生物">生物
+        <input type="checkbox" name="demand4" value="化学">化学
+        <input type="checkbox" name="demand4" value="政治">政治
+        <input type="checkbox" name="demand4" value="地理">地理
+    </span></p>
+    <p><span>批次</span><select name="batch_text" id="batch_text_id">
+                <option value="">?</option>
+            </select></p>
+    <p><span>分数</span><span><input id="score"></input></span>
+    <span>排名</span><span><input id="rank"></input></span></p>
+
+<!--    <button id='submit_batch'>刷新批次信息</button>-->
+    <button id='submit'>提交</button>
+
+    <div class="tab" id="tab" >
+        <span class="checked" data-idx="0">冲</span>
+        <span data-idx="1">稳</span>
+        <span data-idx="2">保</span>
+        <span data-idx="3">全部</span>
+    </div>
+    <div class="result-con">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <table class="table" id="table1" cellspacing="3" bgcolor="#f5f5f5">
+                    </table>
+                </div>
+                <div class="swiper-slide">
+                    <table class="table" id="table2" cellspacing="3" bgcolor="#f5f5f5">
+                    </table>
+                </div>
+                <div class="swiper-slide">
+                    <table class="table" id="table3" cellspacing="3" bgcolor="#f5f5f5" >
+                    </table>
+                </div>
+                <div class="swiper-slide">
+                    <table class="table" id="table4" cellspacing="3" bgcolor="#f5f5f5" >
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+
+
+    </div>
+    <script>
+        var batch_new
+        var mySwiper = new Swiper('.swiper-container', {
+            // autoplay: true,//可选选项，自动滑动
+            autoHeight: true,
+            observer: true, //修改swiper自己或子元素时，自动初始化swiper
+            observeParents: true, //修改swiper的父元素时，自动初始化swiper
+            on: {
+                slideChange() {
+                    $('#tab span').removeClass('checked').eq(mySwiper.activeIndex).addClass('checked')
+                }
+            }
+        })
+
+        function isInArray(arr,value){
+            for(var i = 0; i < arr.length; i++){
+                if(value == arr[i]){
+                    return true;
+                }}
+            return false;
+        }
+        
+        $('#province_id').change(function(){
+            if(isInArray(['1','2','9','11','15','20'], $(this).val())){
+                $('#demandinput_6').show()
+                $('#demandinput_4').hide()
+                $('#wenli_print_new').hide()
+                $('#wenli_print_old').hide()
+            }else if(isInArray(['3', '6', '27', '19', '18', '17', '13', '10'], $(this).val()))
+            {
+                $('#wenli_print_new').show()
+                $('#wenli_print_old').hide()
+                $('#demandinput_6').hide()
+                $('#demandinput_4').show()
+            }else{
+                $('#demandinput_6').hide()
+                $('#demandinput_4').hide()
+                $('#wenli_print_new').hide()
+                $('#wenli_print_old').show()
+            }
+            batch_print()
+        })
+        
+        $('#wenli_old').change(function(){batch_print()})
+        $('#wenli_new').change(function(){batch_print()})
+
+        $('#tab span').click(function () {
+            // $('#tab span').removeClass('checked')
+            // $(this).addClass('checked')
+            index = $(this).attr('data-idx')
+            mySwiper.slideTo(index)
+        })
+        $('#tab span').hover(function () {
+            // $('#tab span').removeClass('checked')
+            // $(this).addClass('checked')
+            index = $(this).attr('data-idx')
+            mySwiper.slideTo(index)
+        })
+
+        $('#getexcel').click(function () {
+            url = '/downloadXlxs?province_id='+$("#province_id").val()+'&batch_text='+$("#batch_text_id").val()
+            window.open(url)
+        })
+
+        // function download(){
+        //     window.location.href = "/"+$("#province_id").val()+'_'+$("#batch_text_id").val()+'.xlsx'
+        //     // window.location.href = "/"+filename
+        // }
+
+        $('#submit').click(function () {
+            var wenli;
+            var demands = new Array();
+            if(isInArray(['1','2','9','11','15','20'], $("#province_id").val())){
+                wenli = "0"
+                $("input[name='demand6']:checked").each(function () {
+                    demands.push($(this).val());//向数组中添加元素
+                });
+            }else if(isInArray(['3', '6', '27', '19', '18', '17', '13', '10'], $("#province_id").val()))
+            {
+                $("input[name='demand4']:checked").each(function () {
+                    demands.push($(this).val());//向数组中添加元素
+                });
+                wenli = $("#wenli_new").val()
+            }else{
+                wenli = $("#wenli_old").val()
+            }
+            var batch_text = $("#batch_text_id").val()
+            $.ajax({
+                url: '/findCollege',
+                type: 'post',
+                data: JSON.stringify({
+                    'province_id': $("#province_id").val(),
+                    'wenli': wenli,
+                    'score': $("#score").val(),
+                    'rank': $("#rank").val(),
+                    'detail':true,
+                    'demand':demands,
+                    'token': "5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc=",
+                    'batch_text':batch_text
+                }),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    var obj = data['data']
+                    var cobj = []
+                    var wobj = []
+                    var bobj = []
+                    for(var i = 0; i < obj.length; i++) {
+                        if(obj[i]['prob']>0.97){
+                            bobj.push(obj[i])
+                        }
+                        else if(obj[i]['prob']>0.7){
+                            wobj.push(obj[i])
+                        }
+                        else if(obj[i]['prob']>0.3){
+                            cobj.push(obj[i])
+                        }
+                    }
+                    $('#tab span').eq(0).html('冲（'+ cobj.length+'所）')
+                    $('#tab span').eq(1).html('稳（'+ wobj.length+'所）')
+                    $('#tab span').eq(2).html('保（'+ bobj.length+'所）')
+                    $('#tab span').eq(3).html('全部（'+ obj.length+'所）')
+
+                    var dom1, dom2, dom3, dom4
+                    var txtall = ['冲', '稳', '保', '全部']
+                    var domall = [dom1, dom2, dom3, dom4]
+                    for (var jjj = 0; jjj < 4; jjj++) {
+                        domall[jjj] =
+                            '<thead> <tr><th colspan="11">'+txtall[jjj]+'(' + bobj.length +
+                            ')</th></tr><tr>' +
+                            '<td>学校/专业组名称</td>' +
+                            '<td>专业名称</td>'+
+                            '<td>预测今年排名</td>'+
+                            '<td>21年最低位次</td>'+
+                            '<td>20年最低位次</td>'+
+                            '<td>19年最低位次</td>'+
+                            '<td>概率</td>'+
+                            '<td>选科要求</td>'+
+                            '</tr></thead>'
+                    }
+
+                    var objall = [cobj, wobj, bobj, obj]
+
+                    for (var jjj = 0; jjj < 4; jjj++) {
+                        for (var i = 0; i < objall[jjj].length; i++) {
+                            objcp = objall[jjj]
+                            domall[jjj] += '<tr>'
+                            var a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13
+                            if(objcp[i].schoolname!=undefined){a1 = objcp[i].schoolname} else {a1=''}
+                            if(objcp[i].sg_name!=undefined){a2 = objcp[i].sg_name} else {a2=''}
+                            if(objcp[i].sp_name!=undefined){a3 = objcp[i].sp_name} else {a3=''}
+                            if(objcp[i].predict_rank!=undefined){a4 = objcp[i].predict_rank} else {a4=''}
+                            if(objcp[i].minscore_rank_2021!=undefined){a5 = objcp[i].minscore_rank_2021} else {a5=''}
+                            if(objcp[i].minscore_rank_2020!=undefined){a6 = objcp[i].minscore_rank_2020} else {a6=''}
+                            if(objcp[i].minscore_rank_2019!=undefined){a7 = objcp[i].minscore_rank_2019} else {a7=''}
+
+                            if(objcp[i].prob!=undefined){a10 = objcp[i].prob} else {a10=''}
+                            if(objcp[i].demand!=undefined){a11 = objcp[i].demand} else {a11=''}
+                            if(batch_new[$("#batch_text_id").val()]['mode']=='group'){
+                                domall[jjj] += '<td>' + a1 + a2+ '</td>' +
+                                    '<td province_id='+$("#province_id").val() +' wenli='+wenli+' score='+$("#score").val() +
+                                    ' rank='+$("#rank").val()+ ' school_code='+objcp[i].school_code +
+                                    ' sg_name='+objcp[i].sg_name+' college_id='+objcp[i].college_id + '>'
+                                    + '<a href="#" onclick="addddd(this)">展开</a>' + '</td>' +
+                                    '<td>' + a4 + '</td>' +
+                                    '<td>' + a5 + '</td>' +
+                                    '<td>' + a6 + '</td>' +
+                                    '<td>' + a7 + '</td>' +
+                                    '<td>' + a10 + '</td>' +
+                                    '<td>' + a11 + '</td>'
+                                domall[jjj] += ' </tr>'}
+                            else{domall[jjj] += '<td>' + a1 + a2+ '</td>' +
+                                    '<td>' + a3 + '</td>' +
+                                    '<td>' + a4 + '</td>' +
+                                    '<td>' + a5 + '</td>' +
+                                    '<td>' + a6 + '</td>' +
+                                    '<td>' + a7 + '</td>' +
+                                    '<td>' + a10 + '</td>' +
+                                    '<td>' + a11 + '</td>'
+                                domall[jjj] += ' </tr>'
+                            }
+
+                        }
+
+                    }
+                    $('#table1').html(domall[0])
+                    $('#table2').html(domall[1])
+                    $('#table3').html(domall[2])
+                    $('#table4').html(domall[3])
+                }
+            })
+         })
+
+        function batch_print() {
+           $.ajax({
+                url: '/findBatchInfo',
+                type: 'post',
+                data: JSON.stringify({
+                    'province_id': $("#province_id").val(),
+                    'token': "5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc=",
+                }),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    var obj = {
+                        'batch_data': data['batch_info'],
+                    }
+                    var dom1 = '<select name="province_id" id="batch_text">'
+                    batch_new = {}
+
+                    for (var i = 0; i < obj['batch_data'].length; i++) {
+                        if(obj['batch_data'][i]['enable']){
+                            dom1 += '<option value='+obj['batch_data'][i].batch_norm+'>'+
+                            obj['batch_data'][i].batch_norm+'_'+
+                            obj['batch_data'][i].gaozhi+'高职'+'_'+
+                            obj['batch_data'][i].cengci+'层次'+'_'+
+                            obj['batch_data'][i].num_school+'表上院校'+'_'+
+                            obj['batch_data'][i].num_sp+'表上专业'+'_'+
+                            obj['batch_data'][i].mode+'志愿类型'+
+                            '</option>'
+                        }
+                        batch_new[obj['batch_data'][i].batch_norm] = obj['batch_data'][i]
+                    }
+
+                    dom1 += '</select>'
+                $('#batch_text_id').html(dom1)}
+        })
+
+        }
+
+        function addddd(rows){     //传值不可以用特殊字，如把rows 改成this，是没有删除效果的
+            var dataobj = rows.parentNode.attributes
+            var row = rows.parentNode.parentNode; // 按钮所在行
+            var index = row.rowIndex-1; // 当前行的索引
+            var tb = row.parentNode; //当前表格
+            // var newTr=tb.insertRow(index);
+
+
+            // location.href = "#firstAnchor";
+
+            // scrollTop
+            var batch_text =  $("#batch_text_id").val()
+            var demands = new Array();
+            if(isInArray(['1','2','9','11','15','20'], $("#province_id").val())){
+                wenli = "0"
+                $("input[name='demand6']:checked").each(function () {
+                    demands.push($(this).val());//向数组中添加元素
+                });
+            }else if(isInArray(['3', '6', '27', '19', '18', '17', '13', '10'], $("#province_id").val()))
+            {
+                $("input[name='demand4']:checked").each(function () {
+                    demands.push($(this).val());//向数组中添加元素
+                });
+                wenli = $("#wenli_new").val()
+            }else{
+                wenli = $("#wenli_old").val()
+            }
+            console.log(dataobj)
+
+            $.ajax({
+            url: '/findCollege',
+            type: 'post',
+            async: false,
+            data: JSON.stringify({
+                'province_id': dataobj.province_id.nodeValue,
+                'wenli': dataobj.wenli.nodeValue,
+                'score': dataobj.score.nodeValue,
+                'rank': dataobj.rank.nodeValue,
+                'detail':true,
+                'demand':demands,
+                'batch_text':batch_text,
+                'school_code':dataobj.school_code.nodeValue,
+                'token': "5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc=",
+                'sg_name':dataobj.sg_name.nodeValue,
+                'college_id': dataobj.college_id.nodeValue,
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data2) {
+                var obj2 = data2['data']
+                for (var j = 0; j < obj2.length; j++) {
+                    var b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13
+                    if(obj2[j].schoolname!=undefined){b1 = obj2[j].schoolname} else {b1=''}
+                    if(obj2[j].sg_name!=undefined){b2 = obj2[j].sg_name} else {b2=''}
+                    if(obj2[j].sp_name!=undefined){b3 = obj2[j].sp_name} else {b3=''}
+
+                    if(obj2[j].predict_rank!=undefined){b4 = obj2[j].predict_rank} else {b4=''}
+                    if(obj2[j].minscore_rank_2021!=undefined){b5 = obj2[j].minscore_rank_2021} else {b5=''}
+                    if(obj2[j].minscore_rank_2020!=undefined){b6 = obj2[j].minscore_rank_2020} else {b6=''}
+                    if(obj2[j].minscore_rank_2019!=undefined){b7 = obj2[j].minscore_rank_2019} else {b7=''}
+
+
+                    if(obj2[j].prob!=undefined){b10 = obj2[j].prob} else {b10=''}
+                    if(obj2[j].demand!=undefined){b11 = obj2[j].demand} else {b11=''}
+                    var newTr=tb.insertRow(index);
+                    newTr.setAttribute("bgcolor","gray")
+                    x = newTr.insertCell()
+                    x.innerHTML = ''
+                    x = newTr.insertCell()
+                    x.innerHTML = b3
+                    x = newTr.insertCell()
+                    x.innerHTML = b4
+                    x = newTr.insertCell()
+                    x.innerHTML = b5
+                    x = newTr.insertCell()
+                    x.innerHTML = b6
+                    x = newTr.insertCell()
+                    x.innerHTML = b7
+                    x = newTr.insertCell()
+                    x.innerHTML = b10
+                    x = newTr.insertCell()
+                    x.innerHTML = b11
+                }
+                }})
+            rows.parentNode.innerHTML= '<a href="#" onclick="dellll(this)">收起</a>'
+      }
+      function dellll(rows){
+        var dataobj = rows.parentNode.attributes
+        var row = rows.parentNode.parentNode; // 按钮所在行
+        var index = row.rowIndex; // 当前行的索引
+        var tb = row.parentNode; //当前表格
+          rows.parentNode.innerHTML= "<a href=\"#\" onclick=\"addddd(this)\">展开</a>"
+          for(var num=1;num<50;num++){
+              if(tb.rows[index-1].bgColor=="gray"){
+                  tb.deleteRow(index-1);
+              }
+              else{
+                  break
+              }
+          }
+      }
+    </script>
+</body>
+</html>

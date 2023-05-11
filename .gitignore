@@ -1,0 +1,17 @@
+# 虚拟服务环境
+/venv1/
+# 下载文件目录
+/attachment/
+# 错误报告
+/err.txt
+/beifen
+# 正式直接用dockerfile
+docker-compose.yml
+.idea
+__pycache__
+.vscode
+*.pyc
+/GaoKao2021/DataRaw/
+debug.py
+fenshuyuce.py
+log

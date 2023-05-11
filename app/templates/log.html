@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日志</title>
+    <script src="static/jquery.min.js"></script>
+</head>
+<body onload='main()'>
+<textarea id="logall" style="width: 100%;height: 100%;position: absolute"></textarea>
+</body>
+<script>
+    function main(){
+        loadstat()
+        setInterval("loadstat()", 2500)
+    }
+    function loadstat(){
+        var url = new URL(window.location.href)
+        var province = url.searchParams.get("province");
+        console.log(province)
+        var settings = {
+            "url": '/findLogProvinceFile',
+            "method": "POST",
+            "headers": {
+                "Content-Type": 'application/json',
+            },
+            "dataType": "json",
+            "data": JSON.stringify({
+                "province_id": province,
+                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
+            }),
+        };
+        $.ajax(settings).done(
+            function (data){
+                var log = data.log
+                $('#logall').html(log)
+            }
+        )
+
+    }
+</script>
+</html>
