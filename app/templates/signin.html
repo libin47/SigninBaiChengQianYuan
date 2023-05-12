@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <title>签到结果</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/blue.css">
+    <link rel="stylesheet" href="/static/animate.min.css">
+    <style type="text/css">
+
+        .content-row {
+            padding: 50px 0 10px;
+        }
+
+        /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            background-color: #F5F5F5;
+        }
+
+        /*定义滚动条轨道 内阴影+圆角*/
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            background-color: #F5F5F5;
+        }
+
+        /*定义滑块 内阴影+圆角*/
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+            background-color: #aaa;
+        }
+        #errorDiv{
+            font-size: 21px;
+            width: 60%;
+            margin: 0 auto 80% auto;
+            text-align: center;
+            line-height: 2em;
+        }
+        .pt1{
+            font-size: 18px;
+            padding-top: 12px;
+        }
+        .pt2{
+            padding-top: 35px;
+        }
+        .pt3{
+            /*padding-top: 12px;*/
+            padding-bottom: 25px;
+        }
+        .pt4{
+            font-size: 18px;
+            padding-top: 8px;
+        }
+        .pt5{
+            padding-top: 35px;
+            padding-bottom: 25px;
+        }
+        .pt6{
+            padding-top: 25px;
+        }
+        .yzc-banner
+        {
+            padding: 10px;
+            text-align: center;color: #333;
+            font-size: 14px
+        }
+    </style>
+</head>
+<body onload='loadstat()'>
+<div class="container-fluid">
+    <div class="row content-row">
+        <div class="col-sm-1 col-md-2 col-lg-2 hidden-xs"></div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8" style="font-size: 20px;text-align: center;">
+
+                <div style="font-size: 23px;" id="name"><b>xxx</b></div>
+                    <div style="font-size: 23px;" class="pt1" id="phone">xxxxxxxxx</div>
+                <div class="pt2"></div>
+                <div class="text-center" style="margin-top:16%;padding-bottom: 15px;">
+                    <img src="/static/icon_shape_toast.png" style="width: 22%;margin-bottom: 10px;">
+                    <p>签到成功</p>
+                </div>
+                <div class="yzc-banner">
+                    <span>查看日程安排，</span><button class="btn-link" style="padding-left: 0;" data-toggle="modal">请点击</button>
+                </div>
+
+            <div style="border-top:1px solid #ccc;padding: 15px 22px;margin-top: 20px;font-size: 14px;" class="text-center">
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-sm-1 col-md-2 col-lg-2 hidden-xs"></div>
+</div>
+</div>
+
+
+<script src="/static/jquery.min.js"></script>
+<script>
+    function loadstat(){
+        var url = new URL(window.location.href)
+        var name = url.searchParams.get("name");
+        var phone = url.searchParams.get("phone");
+        $('#name').html(name)
+        $('#phone').html(phone)
+    };
+
+    
+
+
+
+
+</script>
+</body>
+</html>

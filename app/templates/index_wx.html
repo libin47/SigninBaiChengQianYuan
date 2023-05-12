@@ -219,14 +219,14 @@
         $(e.target).next(".attach").click();
     });
 
-    // const redirectToAuthPage = () => {
-    //     const callbackURL = encodeURIComponent(`https://wind-watcher.cn`)
-    //     const state = encodeURIComponent('')
-    //     const wechatId = 'wxa3ef577d7f409ff1'
-    //     const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`
-    //     window.location.href = redirectURI
-    // }
-    // redirectToAuthPage()
+    const redirectToAuthPage = () => {
+        const callbackURL = encodeURIComponent(`https://wxapp.wind-watcher.cn`)
+        const state = encodeURIComponent('')
+        const wechatId = 'wxa3ef577d7f409ff1'
+        const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`
+        window.location.href = redirectURI
+    }
+    redirectToAuthPage()
 
 </script>
 </body>
