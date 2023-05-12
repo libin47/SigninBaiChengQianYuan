@@ -33,14 +33,16 @@ def wxyanzheng():
 @b.route("/", methods=["GET"])
 @b.route("/index", methods=["GET"])
 def index():
+    return render_template("index_wx.html")
+
+@b.route("/index_nowx", methods=["GET"])
+def index_wx():
     return render_template("index.html")
 
-@b.route("/index_wx", methods=["GET"])
-def index_wx():
-    return render_template("index_wx.html")
 @b.route("/signin_ok", methods=["GET"])
 def signin_ok():
     return render_template("signin.html")
+
 @b.route("/signin", methods=["POST"])
 def signin():
     d = json.loads(request.get_data(as_text=True))
