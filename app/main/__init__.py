@@ -26,7 +26,9 @@ import time
 
 b = Blueprint("main", __name__)
 
-
+@b.route("/MP_verify_TTH4vMTo8zLwTLXd.txt", methods=["GET"])
+def wxyanzheng():
+    return render_template("MP_verify_TTH4vMTo8zLwTLXd.txt")
 
 @b.route("/", methods=["GET"])
 @b.route("/index", methods=["GET"])
