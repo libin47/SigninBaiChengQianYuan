@@ -8,6 +8,7 @@
 """
 import json
 import pickle
+from database_mongo import getdb
 
 from flask import render_template, jsonify
 from flask import Blueprint, request, redirect, url_for, flash, send_file
@@ -31,6 +32,34 @@ b = Blueprint("main", __name__)
 @b.route("/index", methods=["GET"])
 def index():
     return render_template("index.html")
+
+
+@b.route("/signin", methods=["POST"])
+def signin():
+    d = json.loads(request.get_data(as_text=True))
+    name = str(d["name"])
+    phone = int(d.get("phone"))
+    danwei = str(d["danwei"])
+    times = time.localtime()
+    db = getdb()
+    db.insert_one({
+        "name": name,
+        "phone": phone,
+        "danwei": danwei,
+        "time": times,
+    })
+    return jsonify({"ok": True})
+
+
+
+
+
+
+
+
+
+
+
 
 
 @b.route("/admin", methods=["GET"])

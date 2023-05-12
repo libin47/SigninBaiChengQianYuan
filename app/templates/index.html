@@ -131,7 +131,7 @@
                <div class="form-group">
                     <label class="item control-label" style="font-size:17px;">姓名</label>
                     <div class="item">
-                        <input type="text" class="form-control" value="" name="name" autocomplete="off" placeholder="必填" required="">
+                        <input type="text" class="form-control" value="" id="name" name="name" autocomplete="off" placeholder="必填" required="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -143,13 +143,13 @@
                  <div class="form-group">
                     <label class="item control-label" style="font-size:17px;">单位</label>
                     <div class="item">
-                        <input type="text" class="form-control" value="" name="work" autocomplete="off" placeholder="必填" required="">
+                        <input type="text" class="form-control" value="" id="danwei" name="work" autocomplete="off" placeholder="必填" required="">
                     </div>
                 </div>
             </form>
             <div id="tipDiv"></div>
             <div class="float-btn">
-                <button type="button" onclick="$('#submitBtn').click();forDoubleClick(this);" id="submitBtnEx"
+                <button type="button" id="submit"
                         class="btn btn-primary center-block">签到</button>
             </div>
 
@@ -160,17 +160,6 @@
 </div>
 
 <script src="/static/jquery.min.js"></script>
-<script type="text/javascript" language="JavaScript">
-
-
-    Base.esapi.properties.application.Name = "My Application v1.0";
-
-    // Initialize the api
-    org.owasp.esapi.ESAPI.initialize();
-
-
-
-</script>
 <style>
     .yg-toast {
         position: fixed;
@@ -191,337 +180,41 @@
 
 </style>
 
-<script>
+<script language="JavaScript">
     $('#submit').click(function () {
-
-    }
-
-    var configidString, radioidString, fileidString;
-    var fileflag = false;
-    $(function () {
-        $("input:checkbox,input:radio").iCheck({
-            checkboxClass : "icheckbox_square-blue",
-            radioClass : "iradio_square-blue",
-            increaseArea : "20%"
-        });
-        $.post("/settingEnroll/getSettingEnroll",{mid:"0eu-vQfoTUerFdHqlJc9Cw"},function (data) {
-            //
-            if (data.errorcode == 1) {
-                if(data.resultData.name==1){
-                    if(data.resultData.isname==1){
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>姓名</label>"+
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' value='' name='name' autocomplete=\"off\" placeholder='必填' required>"+
-                            "</div>"+
-                            "</div>");
-                    }else {
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>姓名</label>"+
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' value='' name='name' autocomplete=\"off\" placeholder='姓名'>"+
-                            "</div>"+
-                            "</div>");
-                    }
-
+        var name = $("#name").val()
+        var phone = $("#tel").val()
+        var danwei = $("#danwei").val()
+        $.ajax({
+            url: '/signin',
+            type: 'post',
+            data: JSON.stringify({
+                'name': name,
+                'phone': phone,
+                'danwei': danwei
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+                if(data['ok']){
+                    alert("签到成功");
                 }
-                if(data.resultData.phone==1){
-                    if(data.resultData.isphone==1){
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>手机</label>"+
-                            "<div class='item'>"+
-                            "<input type='text' id='tel' class='form-control' value='' name='phone' autocomplete=\"off\" placeholder='必填' required maxlength='11'>"+
-                            "</div>"+
-                            "</div>");
-                    }else {
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>手机</label>"+
-                            "<div class='item'>"+
-                            "<input type='text' id='tel' class='form-control' value='' name='phone' autocomplete=\"off\" placeholder='手机' maxlength='11'>"+
-                            "</div>"+
-                            "</div>");
-                    }
-                    if(data.resultData.checkPhone==1){
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>验证码</label>"+
-                            "<div style='display: flex;' id='f_code' class='item'>" +
-                            "<div style='width: 55%'>" +
-                            "<input type='text' id='code' style='border-radius: 4px 0 0 4px;' class='form-control' name='code' autocomplete='off' placeholder='验证码' required maxlength='6'>"+
-                            "</div>"+
-                            "<div id='codeDiv'>" +
-                            "<span id='codeText'>获取验证码</span>" +
-                            "</div>"+
-                            "</div>"+
-                            "</div>");
-                    }
-
-                }
-                if(data.resultData.company==1){
-                    var a = data.resultData.companytext;
-                    if(data.resultData.iscompany==1){
-
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.companytext) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' value='' name='company'  autocomplete=\"on\" placeholder='必填' required>"+
-                            "</div>"+
-                            "</div>");
-                    }else {
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.companytext) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' value='' name='company' autocomplete=\"on\" placeholder='选填'>"+
-                            "</div>"+
-                            "</div>");
-                    }
-
-                }
-                if(data.resultData.job==1){
-                    if(data.resultData.isjob==1){
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.jobtext) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' value='' name='job' autocomplete=\"on\" placeholder='必填' required>"+
-                            "</div>"+
-                            "</div>");
-                    }else {
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.jobtext) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' value='' name='job' autocomplete=\"on\" placeholder='选填'>"+
-                            "</div>"+
-                            "</div>");
-                    }
-
-                }
-                if(data.resultData.extra1==1){
-                    if(data.resultData.isExtra1==1){
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.extratext1) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' name='extra1' autocomplete=\"on\" placeholder='必填' required>"+
-                            "</div>"+
-                            "</div>");
-                    }else {
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.extratext1) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' name='extra1' autocomplete=\"on\" placeholder='选填'>"+
-                            "</div>"+
-                            "</div>");
-                    }
-
-                }
-                if(data.resultData.extra2==1){
-                    if(data.resultData.isExtra2==1){
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.extratext2) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' name='extra2' autocomplete=\"on\" placeholder='必填' required>"+
-                            "</div>"+
-                            "</div>");
-                    }else {
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.extratext2) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' name='extra2' autocomplete=\"on\" placeholder='选填'>"+
-                            "</div>"+
-                            "</div>");
-                    }
-
-                }
-                if(data.resultData.extra3==1){
-                    if(data.resultData.isExtra3==1){
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.extratext3) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' name='extra3' autocomplete=\"on\" placeholder='必填' required>"+
-                            "</div>"+
-                            "</div>");
-                    }else {
-                        $("#enrollForm").append("<div class='form-group'>"+
-                            "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(data.resultData.extratext3) + "</label>" +
-                            "<div class='item'>"+
-                            "<input type='text' class='form-control' name='extra3' autocomplete=\"on\" placeholder='选填'>"+
-                            "</div>"+
-                            "</div>");
-                    }
-
-                }
-                if(data.resultData.enrolltip==1){
-                    $("#tipDiv").text(data.resultData.tiptext);
-                    $("#tipDiv").show();
-                }
-                $.post("/customConfig/getAllCustomConfig",{mid:"0eu-vQfoTUerFdHqlJc9Cw"},function (data) {
-                    if (data.errorcode == 1) {
-                        configidString = [];
-                        radioidString = [];
-                        fileidString = [];
-                        $(data.resultData).each(function (i,n) {
-                            if(n.type==1){
-                                var str = "";
-                                var ary = n.extdata.split("\t");
-                                if(n.isnotnull == 1){
-                                    //自定义多选必填题的数组ID
-                                    configidString.push(n.id);
-                                    $(ary).each(function (j,m) {
-                                        str += "<input type='checkbox' name='"+n.id+"' value='"+j+"'>&nbsp;"+$ESAPI.encoder().encodeForHTML(m)+"<br><br>"
-                                    });
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"&nbsp*(必填)</label>" +
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt2'>"+
-                                        str+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }else{
-                                    $(ary).each(function (j,m) {
-                                        str += "<input type='checkbox' name='"+n.id+"' value='"+j+"'>&nbsp;"+$ESAPI.encoder().encodeForHTML(m)+"<br><br>"
-                                    });
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"</label>"+
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt2'>"+
-                                        str+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }
-                            }else if(n.type==2){
-                                var str = "";
-                                var ary = n.extdata.split("\t");
-                                if(n.isnotnull == 1){
-                                    //自定义多选必填题的数组ID
-                                    radioidString.push(n.id);
-                                    $(ary).each(function (j,m) {
-                                        str += "<input type='radio'  name='" + n.id + "' value='" + j + "'>&nbsp;" + $ESAPI.encoder().encodeForHTML(m) + "<br><br>"
-                                    });
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"&nbsp*(必填)</label>"+
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt2'>"+
-                                        str+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }else{
-                                    $(ary).each(function (j,m) {
-                                        str += "<input type='radio' name='"+n.id+"' value='"+j+"'>&nbsp;"+$ESAPI.encoder().encodeForHTML(m)+"<br><br>"
-                                    });
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"</label>"+
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt2'>"+
-                                        str+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }
-
-
-                            } else if (n.type == 3) {
-                                if(n.isnotnull==1){
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"&nbsp*(必填)</label>"+
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt1'>"+
-                                        "<input type='text' class='form-control' name='"+n.id+"' required placeholder='"+$ESAPI.encoder().encodeForHTML(n.title)+"'>"+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }else{
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"</label>"+
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt1'>"+
-                                        "<input type='text' class='form-control' name='"+n.id+"' placeholder='"+$ESAPI.encoder().encodeForHTML(n.title)+"'>"+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }
-                            } else if (n.type == 5) {
-                                if(n.isnotnull==1){
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"&nbsp*(必填)</label>"+
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt1'>"+
-                                        "<textarea class='form-control' rows='3' name='"+n.id+"' required placeholder='"+$ESAPI.encoder().encodeForHTML(n.title)+"'></textarea>"+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }else{
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>"+
-                                        "<label class='item control-label' style='font-size:17px;'>"+$ESAPI.encoder().encodeForHTML(n.title)+"</label>"+
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt1'>"+
-                                        "<textarea class='form-control' rows='3' name='"+n.id+"' placeholder='"+$ESAPI.encoder().encodeForHTML(n.title)+"'></textarea>"+
-                                        "</div>"+
-                                        "<input type='hidden' name='configid' id='configid' value='"+n.id+"'>"+
-                                        "</div>");
-                                }
-                            } else {
-                                if (n.isnotnull == 1) {
-                                    //自定义文件必填题的数组ID
-                                    fileidString.push(n.id);
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>" +
-                                        "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(n.title) + "&nbsp*(必填)</label>" +
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt1'>" +
-                                        "<form enctype='multipart/form-data'>" +
-                                        "<a class='btn btn-primary uploadBtn'>上传文件</a>" +
-                                        "<input type='file' class='attach hidden' id='" + n.id + "' name='file' >" +
-                                        "<span style='margin-left: 25px;'></span>" +
-                                        "</form>" +
-                                        "<input type='hidden'  name='" + n.id + "'>" +
-                                        "<img src='' style='display: none;' class='attachImg'>" +
-                                        "</div>" +
-                                        "<input type='hidden' name='configid' id='configid' value='" + n.id + "'>" +
-                                        "</div>");
-                                } else {
-                                    $("#enrollForm").append("<hr style='border: 0px;border-top: 1px dashed #ddd;'><div class='form-group'>" +
-                                        "<label class='item control-label' style='font-size:17px;'>" + $ESAPI.encoder().encodeForHTML(n.title) + "</label>" +
-                                        (n.desc ? "<div class='item'><span class='desc'>"+$ESAPI.encoder().encodeForHTML(n.desc)+"</span></div>" : "") +
-                                        "<div class='item mt1'>" +
-                                        "<form enctype='multipart/form-data'>" +
-                                        "<a class='btn btn-primary uploadBtn'>上传文件</a>" +
-                                        "<input type='file' class='attach hidden' id='" + n.id + "' name='file'>" +
-                                        "<span style='margin-left: 25px;'></span>" +
-                                        "</form>" +
-                                        "<input type='hidden'  name='" + n.id + "'>" +
-                                        "<img src='' style='display: none;' class='attachImg'>" +
-                                        "</div>" +
-                                        "<input type='hidden' name='configid' id='configid' value='" + n.id + "'>" +
-                                        "</div>");
-                                }
-                            }
-                        });
-                    }
-                    $("input:checkbox,input:radio").iCheck({
-                        checkboxClass : "icheckbox_square-blue",
-                        radioClass : "iradio_square-blue",
-                        increaseArea : "20%"
-                    });
-                });
-
-            }else{
-                $("#enrollForm").html("本次活动已关闭。").addClass("font_3");
-                $(".page-header,.float-btn").hide();
             }
-        });
-
+    })
     });
+
     $("body").on("click", ".uploadBtn", function (e) {
         $(e.target).next(".attach").click();
     });
 
-    function forDoubleClick(btn) {
-        $(btn).attr('disabled','disabled');
-        setTimeout(function () {
-            $(btn).removeAttr("disabled");
-        }, 3000);
+    const redirectToAuthPage = () => {
+        const callbackURL = encodeURIComponent(`https://wind-watcher.cn`)
+        const state = encodeURIComponent('')
+        const wechatId = 'wxa3ef577d7f409ff1'
+        const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_userinfo&state=${state}#wechat_redirect`
+        window.location.href = redirectURI
     }
-
+    redirectToAuthPage()
 
 </script>
 </body>
