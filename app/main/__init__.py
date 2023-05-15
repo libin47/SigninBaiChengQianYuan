@@ -93,6 +93,7 @@ def get_openid():
     url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+SECRET+'&code='+code+'&grant_type=authorization_code'
     r = requests.get(url)
     data = r.json()
+    print(data)
     if 'errcode' in data.keys():
         return jsonify({"ok": False})
     else:
