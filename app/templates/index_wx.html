@@ -234,7 +234,7 @@
         const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`
         window.location.href = redirectURI
     }
-    if(code!=null) {
+    if(code==null) {
         redirectToAuthPage()
     }
     else {
