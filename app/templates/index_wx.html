@@ -181,7 +181,7 @@
 
 <script language="JavaScript">
     var openid;
-    $('#submit').click(function () {
+    function submit() {
         var name = $("#name").val()
         var phone = $("#tel").val()
         var danwei = $("#danwei").val()
@@ -214,7 +214,7 @@
                 }
             }
         })
-    });
+    };
 
     $("body").on("click", ".uploadBtn", function (e) {
         $(e.target).next(".attach").click();
@@ -254,7 +254,7 @@
                     window.location.href = "/signin/"+openid;
                 }
                 else {
-                    $('#subdiv').html('<button type="button" id="submit" class="btn btn-primary center-block">签到</button>')
+                    $('#subdiv').html('<button type="button" click="submit()" class="btn btn-primary center-block">签到</button>')
                 }
             }
         })
