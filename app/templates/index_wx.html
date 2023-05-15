@@ -225,6 +225,7 @@
     var state = url.searchParams.get("state");
     var openid = url.searchParams.get("openid");
 
+
     const redirectToAuthPage = () => {
         const callbackURL = encodeURIComponent(`https://wxapp.wind-watcher.cn/index`)
         const state = encodeURIComponent('')
@@ -232,7 +233,7 @@
         const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`
         window.location.href = redirectURI
     }
-    if(code.length > 0) {
+    if(code!=nil) {
         redirectToAuthPage()
     }
     else {
