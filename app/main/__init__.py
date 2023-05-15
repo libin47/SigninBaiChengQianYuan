@@ -52,6 +52,7 @@ def signin(openid):
     db.close()
     name = data['name']
     phone = data['phone']
+    print(data)
     # insert
     db2 = getdb()
     db2.insert_one({
