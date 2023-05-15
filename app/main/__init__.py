@@ -8,7 +8,8 @@
 """
 import json
 import pickle
-from database_mongo import getdb
+from database_mongo import getdb, getdb_user
+import requests
 
 from flask import render_template, jsonify
 from flask import Blueprint, request, redirect, url_for, flash, send_file
@@ -43,24 +44,65 @@ def index_wx():
 def signin_ok():
     return render_template("signin.html")
 
-@b.route("/signin", methods=["POST"])
-def signin():
+
+@b.route("/signin/<openid>", methods=["Get"])
+def signin(openid):
+    db = getdb_user()
+    data = db.find_one({"openid": openid})
+    db.close()
+    name = data['name']
+    phone = data['phone']
+    # insert
+    db2 = getdb()
+    db2.insert_one({
+        "openid": openid,
+        "time": time.time(),
+    })
+    db2.close()
+    # print
+    kwargs = {
+        "name": name,
+        "phone": phone,
+    }
+    return render_template("signin.html", **kwargs)
+
+@b.route("/signup", methods=["POST"])
+def signup():
     d = json.loads(request.get_data(as_text=True))
     name = str(d["name"])
     phone = int(d.get("phone"))
     danwei = str(d["danwei"])
-    times = time.localtime()
-    db = getdb()
+    openid = str(d['openid'])
+    # times = time.localtime()
+    db = getdb_user()
     db.insert_one({
         "name": name,
         "phone": phone,
         "danwei": danwei,
-        "time": times,
+        "openid": openid,
     })
     return jsonify({"ok": True})
 
 
-
+@b.route("/get_openid", methods=["POST"])
+def get_openid():
+    d = json.loads(request.get_data(as_text=True))
+    code = str(d["code"])
+    APPID = "wxcd05e9f3d5d1f7bf"
+    SECRET = "07f346d84f65d5ac9c5875e04599d6b0"
+    url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+SECRET+'&code='+code+'&grant_type=authorization_code'
+    r = requests.get(url)
+    data = r.json()
+    if 'errcode' in data.keys():
+        return jsonify({"ok": False})
+    else:
+        openid = data['openid']
+        db = getdb_user()
+        num = db.count_documents({"openid": openid})
+        if num>0:
+            return jsonify({"ok": True, "exist": True, 'openid': data['openid']})
+        else:
+            return jsonify({"ok": True, "exist": False, 'openid': data['openid']})
 
 
 

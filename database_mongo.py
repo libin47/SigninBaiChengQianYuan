@@ -14,15 +14,24 @@ class Collection(object):
         self.db = DB()
         self.coll = db[tablename]
 
+    def close(self):
+        self.db.close()
+
     def insert_one(self, data):
         return self.coll.insert_one(data)
 
     def count_documents(self, data):
         return self.coll.count_documents(data)
 
+    def find_one(self, data):
+        return self.coll.find_one(data)
+
 
 def getdb():
     return Collection("baicheng")
+
+def getdb_user():
+    return Collection("user")
 
 
 if __name__=='__main__':

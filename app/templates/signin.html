@@ -106,7 +106,7 @@
 <script src="/static/jquery.min.js"></script>
 <script>
     function loadstat(){
-        var url = new URL(window.location.href)
+        var url = new URL(window.location.href);
         var name = url.searchParams.get("name");
         var phone = url.searchParams.get("phone");
         $('#name').html(name)
