@@ -34,11 +34,13 @@ def wxyanzheng():
 @b.route("/", methods=["GET"])
 @b.route("/index", methods=["GET"])
 def index():
-    return render_template("index_wx.html")
-
-@b.route("/index_nowx", methods=["GET"])
-def index_wx():
     return render_template("index.html")
+
+@b.route("/pdf", methods=["GET"])
+def pdf():
+    return send_file("templates/pdf.pdf")
+
+
 
 @b.route("/signin_ok", methods=["GET"])
 def signin_ok():

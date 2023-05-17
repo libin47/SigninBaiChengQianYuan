@@ -88,7 +88,7 @@
                     <p>签到成功</p>
                 </div>
                 <div class="yzc-banner">
-                    <span>查看日程安排，</span><button class="btn-link" style="padding-left: 0;" data-toggle="modal">请点击</button>
+                    <span>查看日程安排，</span><button class="btn-link" style="padding-left: 0;" data-toggle="modal" onclick="toPDF">请点击</button>
                 </div>
 
             <div style="border-top:1px solid #ccc;padding: 15px 22px;margin-top: 20px;font-size: 14px;" class="text-center">
@@ -112,7 +112,9 @@
         $('#name').html(name)
         $('#phone').html(phone)
     };
-
+    function toPDF(){
+        window.location.href = "/pdf;
+    };
     
 
 

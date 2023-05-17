@@ -150,9 +150,8 @@
                 </div>
             </form>
             <div id="tipDiv"></div>
-            <div class="float-btn">
-                <button type="button" id="submit"
-                        class="btn btn-primary center-block">签到</button>
+            <div class="float-btn" id="subdiv">
+
             </div>
         </div>
         <div class="col-sm-1 col-md-2 col-lg-2 hidden-xs"></div>
@@ -181,7 +180,8 @@
 </style>
 
 <script language="JavaScript">
-    $('#submit').click(function () {
+    var openid;
+    function submit() {
         var name = $("#name").val()
         var phone = $("#tel").val()
         var danwei = $("#danwei").val()
@@ -198,9 +198,10 @@
             return
         }
         $.ajax({
-            url: '/signin',
+            url: '/signup',
             type: 'post',
             data: JSON.stringify({
+                'openid': openid,
                 'name': name,
                 'phone': phone,
                 'danwei': danwei
@@ -209,11 +210,56 @@
             dataType: 'json',
             success: function (data) {
                 if(data['ok']){
-                    window.location.href = "/signin_ok?name="+name+"&phone="+phone
+                    window.location.href = "/signin/"+openid;
                 }
             }
-    })
+        })
+    };
+
+    $("body").on("click", ".uploadBtn", function (e) {
+        $(e.target).next(".attach").click();
     });
+
+    var url = new URL(window.location.href)
+    console.log(url)
+    var code = url.searchParams.get("code");
+    var state = url.searchParams.get("state");
+    var openid = url.searchParams.get("openid");
+
+
+    const redirectToAuthPage = () => {
+        const callbackURL = encodeURIComponent(`https://wxapp.wind-watcher.cn/index`)
+        const state = encodeURIComponent('')
+        const wechatId = 'wxcd05e9f3d5d1f7bf'
+        const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`
+        window.location.href = redirectURI
+    }
+    if(code==null) {
+        redirectToAuthPage()
+    }
+    else {
+        $.ajax({
+            url: '/get_openid',
+            type: 'post',
+            data: JSON.stringify({
+                'code': code
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+                openid = data['openid']
+                var signup = data['exist']
+                if (signup){
+                    window.location.href = "/signin/"+openid;
+                }
+                else {
+                    $('#subdiv').html('<button type="button" onclick="submit();" class="btn btn-primary center-block">签到</button>')
+                }
+            }
+        })
+    }
+
+
 
 
 </script>
