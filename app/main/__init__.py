@@ -38,9 +38,11 @@ def index():
 
 @b.route("/pdf", methods=["GET"])
 def pdf():
-    return send_file("templates/pdf.pdf")
+    return render_template("6666.html")
 
-
+@b.route("/timeanpai", methods=["GET"])
+def timeanpai():
+    return render_template("timeanpai.html")
 
 @b.route("/signin_ok", methods=["GET"])
 def signin_ok():

@@ -89,6 +89,10 @@
                 </div>
                 <div class="yzc-banner">
                     <span>查看日程安排，</span><button class="btn-link" style="padding-left: 0;" data-toggle="modal"
+                                                      type=button onclick="toTimeAnPai();">请点击</button>
+                </div>
+                <div class="yzc-banner">
+                    <span>查看活动方案，</span><button class="btn-link" style="padding-left: 0;" data-toggle="modal"
                                                       type=button onclick="toPDF();">请点击</button>
                 </div>
 
@@ -117,7 +121,9 @@
         console.log("666")
         window.location.href = "/pdf";
     };
-    
+    function toTimeAnPai(){
+        window.location.href = "/timeanpai";
+    };
 
 
 
