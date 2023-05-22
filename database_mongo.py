@@ -26,6 +26,9 @@ class Collection(object):
     def find_one(self, data):
         return self.coll.find_one(data)
 
+    def find(self, data):
+        return self.coll.find(data)
+
 
 def getdb():
     return Collection("baicheng")

@@ -13,7 +13,7 @@
 <body>
     <div class="title">
         <img class="logo" src="http://image.wind-watcher.cn/3b24846e60b2fcff5a82028fab1c9836?h=100&w=100"/>
-        <a class="head-text-main">你好，王大锤</a>
+        <a class="head-text-main">你好，{{name}}</a>
     </div>
     <div class="weather">
         <a class="weather-text">今日天气:晴 11-25°C</a>
@@ -47,7 +47,7 @@
         window.location.href = "/timeanpai";
     };
     function toDingcan(){
-        window.location.href = "/dingcan";
+        window.location.href = "/dingcan/"+openid;
     };
 
 </script>

@@ -20,23 +20,42 @@
             <div class="riqi">5月29日 星期一</div>
             <div class="dingcanfan">
                 <div class="diancanmiaoshu">午饭(自助餐) </div>
-                <button type="button" class="dingcanbutton" id="myBtn" data-time="29" data-value="1">预约</button>
+                {% if data[0] %}
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(29,1)" data-time="29" data-value="1">查看凭证</button></div>
+                {% else %}
+                    <button type="button" class="dingcanbutton" onclick="myBtn(29,1)" data-time="29" data-value="1">预约</button>
+                {% endif %}
             </div>
             <div class="dingcanfan">晚饭(自助餐)
-                <!-- <button type="button" class="dingcanbutton" onclick="dingcan(29,2)">预约</button> -->
-                <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" id="myBtn">查看凭证</button></div>
+                {% if data[1] %}
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(29,2)" data-time="29" data-value="2">查看凭证</button></div>
+                {% else %}
+                    <button type="button" class="dingcanbutton" onclick="myBtn(29,2)" data-time="29" data-value="2">预约</button>
+                {% endif %}
             </div>
         </div>
         <div class="dingcanday">
             <div class="riqi">5月30日 星期二</div>
             <div class="dingcanfan">早饭(自助餐) 
-                <button type="button" class="dingcanbutton" onclick="dingcan(30,0)">预约</button>
+                {% if data[2] %}
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,0)" data-time="30" data-value="0">查看凭证</button></div>
+                {% else %}
+                    <button type="button" class="dingcanbutton" onclick="myBtn(30,0)" data-time="30" data-value="0">预约</button>
+                {% endif %}
             </div>
             <div class="dingcanfan">午饭(自助餐)
-                <button type="button" class="dingcanbutton" onclick="dingcan(30,1)">预约</button>
+                {% if data[3] %}
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,1)" data-time="30" data-value="1">查看凭证</button></div>
+                {% else %}
+                    <button type="button" class="dingcanbutton" onclick="myBtn(30,1)" data-time="30" data-value="1">预约</button>
+                {% endif %}
             </div>
             <div class="dingcanfan">晚饭(自助餐)
-                <button type="button" class="dingcanbutton" onclick="dingcan(30,2)">预约</button>
+                {% if data[4] %}
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,2)" data-time="30" data-value="2">查看凭证</button></div>
+                {% else %}
+                    <button type="button" class="dingcanbutton" onclick="myBtn(30,2)" data-time="30" data-value="2">预约</button>
+                {% endif %}
             </div>
         </div> 
     </div>
@@ -61,25 +80,24 @@
 
 <script src="/static/jquery.min.js"></script>
 <script language="JavaScript">
+    var openid = "{{openid}}"
     var dingcantime = 29;
     var dingcanvalue = 1;
     // 获取弹窗
     var modal = document.getElementById('myModal');
     // 打开弹窗的按钮对象
-    var btn = document.getElementById("myBtn");
+    // var btn = document.getElementById("myBtn");
+    // var mybtnlook = document.getElementById("myBtnLook")
     // 获取 <span> 元素，用于关闭弹窗
     var span = document.querySelector('.close');
     var span2 = document.getElementById('buttonspan');
     
     // 点击按钮打开弹窗
-    btn.onclick = function(e) {
-        console.log(e)
-        console.log(e.target.dataset.value)
-        console.log(e.target.dataset.time)
-        dingcantime = e.target.dataset.time
-        dingcanvalue = e.target.dataset.value
+    function myBtn(a, b) {
+        dingcantime = a
+        dingcanvalue = b
         modal.style.display = "block";
-    }
+    };
     
     // 点击 <span> (x), 关闭弹窗
     span.onclick = function() {
@@ -87,6 +105,12 @@
     }
     span2.onclick = function() {
         modal.style.display = "none";
+    }
+
+    function myBtnLook(a, b) {
+        dingcantime = a
+        dingcanvalue = b
+        window.location.href = "/dingcanpinzheng?openid="+openid+"&time="+dingcantime+"&value="+dingcanvalue;
     }
     
     // 在用户点击其他地方时，关闭弹窗
@@ -98,7 +122,7 @@
 
     function dingcan(){
         var url = new URL(window.location.href)
-        var openid = url.searchParams.get("openid");
+        var openid = "{{openid}}"
         $.ajax({
             url: '/dingcan_api',
             type: 'post',
@@ -111,7 +135,7 @@
             dataType: 'json',
             success: function (data) {
                 if(data['ok']){
-                    window.location.href = "/dingcan?openid="+openid;
+                    window.location.href = "/dingcan/"+openid;
                 }
             }
         })

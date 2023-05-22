@@ -7,8 +7,10 @@
 @File    : __init__.py.py
 """
 import json
+import qrcode
+from io import BytesIO
 import pickle
-from database_mongo import getdb, getdb_user, getdb_dingcan
+from database_mongo import getdb_user, getdb_dingcan
 import requests
 
 from flask import render_template, jsonify
@@ -39,14 +41,15 @@ def index():
 
 @b.route("/index/<openid>", methods=["GET"])
 def index_openid(openid):
-    # db = getdb_user()
-    # data = db.find_one({"openid": openid})
-    # db.close()
-    # name = data['name']
-    # phone = data['phone']
+    db = getdb_user()
+    data = db.find_one({"openid": openid})
+    db.close()
+
+    name = data['name']
+    phone = data['phone']
     kwargs = {
-        "name": "name",
-        "phone": "phone",
+        "name": name,
+        "phone": phone,
         "openid": openid
     }
     return render_template("index.html", **kwargs)
@@ -55,9 +58,69 @@ def index_openid(openid):
 def pdf():
     return render_template("6666.html")
 
-@b.route("/dingcan", methods=["GET"])
-def dingcan():
+
+@b.route("/dingcanpinzheng", methods=["GET"])
+def dingcanpinzheng():
+    time = request.args.get("time")
+    openid = request.args.get("openid")
+    value = request.args.get("value")
+    db = getdb_user()
+    data = db.find_one({"openid": openid})
+    db.close()
+    name = data['name']
+    phone = data['phone']
+
+    db = getdb_dingcan()
+    number = db.count_documents({"openid": openid, "date": int(time), "value": int(value)})
+    db.close()
+
+    kwargs = {
+        "name": name,
+        "phone": phone,
+        "openid": openid,
+        "time": "2023年5月%s日"%time,
+        "value": ["早饭", "午饭", "晚饭"][int(value)],
+    }
+    if number > 0:
+        kwargs["ok"] = 1
+        kwargs['png'] = "/dingcanpinzhengpng?openid="+openid+"&time="+time+"&value="+value
+        return render_template("dingcanpinzheng.html", **kwargs)
+    else:
+        kwargs["ok"] = 0
+        return render_template("dingcanpinzheng.html", **kwargs)
+@b.route("/dingcanpinzhengpng", methods=["GET"])
+def dingcanpinzhengpng():
+    time = request.args.get("time")
+    openid = request.args.get("openid")
+    value = request.args.get("value")
+    db = getdb_dingcan()
+    number = db.count_documents({"openid": openid, "date": int(time), "value": int(value)})
+    print(number)
+    db.close()
+    if number > 0:
+        codeimg = qrcode.make("https://wxapp.wind-watcher.cn/dingcanpinzheng?openid="+openid+"&time="+time+"&value="+value)
+        img_io = BytesIO()
+        codeimg.save(img_io, 'PNG')
+        img_io.seek(0)
+        return send_file(img_io, mimetype='image/png')
     return render_template("dingcan.html")
+@b.route("/dingcan/<openid>", methods=["GET"])
+def dingcan(openid):
+    db = getdb_dingcan()
+    data = [
+        db.count_documents({"openid": openid, "date": 29, "value": 1}),
+        db.count_documents({"openid": openid, "date": 29, "value": 2}),
+        db.count_documents({"openid": openid, "date": 30, "value": 0}),
+        db.count_documents({"openid": openid, "date": 30, "value": 1}),
+        db.count_documents({"openid": openid, "date": 30, "value": 2}),
+    ]
+    db.close()
+
+    kwargs = {
+        "openid": openid,
+        "data": data
+    }
+    return render_template("dingcan.html", **kwargs)
 
 @b.route("/timeanpai", methods=["GET"])
 def timeanpai():

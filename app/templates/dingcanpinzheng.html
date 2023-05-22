@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <title>百城千园行活动订餐</title>
+    <link rel="stylesheet" type="text/css" href="/static/mymain.css">
+
+</head>
+<body>
+    <div class="title-dingcan">
+        <img class="logo" src="http://image.wind-watcher.cn/3b24846e60b2fcff5a82028fab1c9836?h=100&w=100"/ onclick="tohome()">
+        <a class="head-text-dingcan">百城千园行活动订餐</a>
+    </div>
+    {% if ok %}
+        <div class="dingcanlist">
+            <div class="dingcanday">
+                <div class="riqi">
+                    {{name}}{{phone}}：您已预定{{time}}的{{value}}！
+                </div>
+            </div>
+        </div>
+        <img src="{{png}}" class="img-qrcode"/>
+    {% else %}
+        {{name}}{{phone}}：您尚未预定{{time}}的{{value}}！
+    {% endif %}
+
+
+<script src="/static/jquery.min.js"></script>
+<script language="JavaScript">
+    function tohome(){
+        window.location.href = "/index"
+    }
+
+</script>
+</body>
+</html>
