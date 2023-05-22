@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <title>百城千园行活动订餐</title>
+    <link rel="stylesheet" type="text/css" href="/static/mymain.css">
+
+</head>
+<body>
+    <div class="title-dingcan">
+        <img class="logo" src="http://image.wind-watcher.cn/3b24846e60b2fcff5a82028fab1c9836?h=100&w=100"/ onclick="tohome()">
+        <a class="head-text-dingcan">百城千园行活动订餐</a>
+    </div>
+    <div class="dingcanlist">
+        <div class="dingcanday">
+            <div class="riqi">5月29日 星期一</div>
+            <div class="dingcanfan">
+                <div class="diancanmiaoshu">午饭(自助餐) </div>
+                <button type="button" class="dingcanbutton" id="myBtn" data-time="29" data-value="1">预约</button>
+            </div>
+            <div class="dingcanfan">晚饭(自助餐)
+                <!-- <button type="button" class="dingcanbutton" onclick="dingcan(29,2)">预约</button> -->
+                <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" id="myBtn">查看凭证</button></div>
+            </div>
+        </div>
+        <div class="dingcanday">
+            <div class="riqi">5月30日 星期二</div>
+            <div class="dingcanfan">早饭(自助餐) 
+                <button type="button" class="dingcanbutton" onclick="dingcan(30,0)">预约</button>
+            </div>
+            <div class="dingcanfan">午饭(自助餐)
+                <button type="button" class="dingcanbutton" onclick="dingcan(30,1)">预约</button>
+            </div>
+            <div class="dingcanfan">晚饭(自助餐)
+                <button type="button" class="dingcanbutton" onclick="dingcan(30,2)">预约</button>
+            </div>
+        </div> 
+    </div>
+
+    <div id="myModal" class="modal">
+        <!-- 弹窗内容 -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close">&times;</span>
+              <h2>确认订餐</h2>
+            </div>
+            <div class="modal-body">
+              <p>确定要预约用餐吗？</p>
+            </div>
+            <div class="modal-button">
+                <button class="modal-esc" id="buttonspan">取消</button>
+                <button class="modal-enter" onclick="dingcan()">确定</button>
+            </div>
+          </div>
+      
+      </div>
+
+<script src="/static/jquery.min.js"></script>
+<script language="JavaScript">
+    var dingcantime = 29;
+    var dingcanvalue = 1;
+    // 获取弹窗
+    var modal = document.getElementById('myModal');
+    // 打开弹窗的按钮对象
+    var btn = document.getElementById("myBtn");
+    // 获取 <span> 元素，用于关闭弹窗
+    var span = document.querySelector('.close');
+    var span2 = document.getElementById('buttonspan');
+    
+    // 点击按钮打开弹窗
+    btn.onclick = function(e) {
+        console.log(e)
+        console.log(e.target.dataset.value)
+        console.log(e.target.dataset.time)
+        dingcantime = e.target.dataset.time
+        dingcanvalue = e.target.dataset.value
+        modal.style.display = "block";
+    }
+    
+    // 点击 <span> (x), 关闭弹窗
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    span2.onclick = function() {
+        modal.style.display = "none";
+    }
+    
+    // 在用户点击其他地方时，关闭弹窗
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function dingcan(){
+        var url = new URL(window.location.href)
+        var openid = url.searchParams.get("openid");
+        $.ajax({
+            url: '/dingcan_api',
+            type: 'post',
+            data: JSON.stringify({
+                'openid': openid,
+                'time': dingcantime,
+                'value': dingcanvalue,
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+                if(data['ok']){
+                    window.location.href = "/dingcan?openid="+openid;
+                }
+            }
+        })
+    }
+
+    function tohome(){
+        window.location.href = "/index"
+    }
+
+</script>
+</body>
+</html>

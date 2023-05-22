@@ -33,6 +33,9 @@ def getdb():
 def getdb_user():
     return Collection("user")
 
+def getdb_dingcan():
+    return Collection("dingcan")
+
 
 if __name__=='__main__':
     pass

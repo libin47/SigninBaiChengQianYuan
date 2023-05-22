@@ -8,7 +8,7 @@
 """
 import json
 import pickle
-from database_mongo import getdb, getdb_user
+from database_mongo import getdb, getdb_user, getdb_dingcan
 import requests
 
 from flask import render_template, jsonify
@@ -36,9 +36,28 @@ def wxyanzheng():
 def index():
     return render_template("index.html")
 
+
+@b.route("/index/<openid>", methods=["GET"])
+def index_openid(openid):
+    # db = getdb_user()
+    # data = db.find_one({"openid": openid})
+    # db.close()
+    # name = data['name']
+    # phone = data['phone']
+    kwargs = {
+        "name": "name",
+        "phone": "phone",
+        "openid": openid
+    }
+    return render_template("index.html", **kwargs)
+
 @b.route("/pdf", methods=["GET"])
 def pdf():
     return render_template("6666.html")
+
+@b.route("/dingcan", methods=["GET"])
+def dingcan():
+    return render_template("dingcan.html")
 
 @b.route("/timeanpai", methods=["GET"])
 def timeanpai():
@@ -48,28 +67,31 @@ def timeanpai():
 def signin_ok():
     return render_template("signin.html")
 
+@b.route("/login", methods=["GET"])
+def signin():
+    return render_template("login.html")
 
-@b.route("/signin/<openid>", methods=["Get"])
-def signin(openid):
-    db = getdb_user()
-    data = db.find_one({"openid": openid})
-    db.close()
-    name = data['name']
-    phone = data['phone']
-    print(data)
-    # insert
-    db2 = getdb()
-    db2.insert_one({
-        "openid": openid,
-        "time": time.time(),
-    })
-    db2.close()
-    # print
-    kwargs = {
-        "name": name,
-        "phone": phone,
-    }
-    return render_template("signin.html", **kwargs)
+# @b.route("/signin/<openid>", methods=["Get"])
+# def signin(openid):
+#     db = getdb_user()
+#     data = db.find_one({"openid": openid})
+#     db.close()
+#     name = data['name']
+#     phone = data['phone']
+#     print(data)
+#     # insert
+#     db2 = getdb()
+#     db2.insert_one({
+#         "openid": openid,
+#         "time": time.time(),
+#     })
+#     db2.close()
+#     # print
+#     kwargs = {
+#         "name": name,
+#         "phone": phone,
+#     }
+#     return render_template("signin.html", **kwargs)
 
 @b.route("/signup", methods=["POST"])
 def signup():
@@ -88,6 +110,20 @@ def signup():
     })
     return jsonify({"ok": True})
 
+@b.route("/dingcan_api", methods=["POST"])
+def dingcan_api():
+    d = json.loads(request.get_data(as_text=True))
+    openid = str(d["openid"])
+    date = int(d["time"])
+    value = int(d["value"])
+    db = getdb_dingcan()
+    db.insert_one({
+        "openid": openid,
+        "date": date,
+        "value": value
+    })
+    db.close()
+    return jsonify({"ok": True})
 
 @b.route("/get_openid", methods=["POST"])
 def get_openid():

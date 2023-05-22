@@ -292,8 +292,8 @@ def login():
             return redirect(url_for("main.index"))
         else:
             flash("登录失败！请检查用户名和密码！")
-            return render_template("login.html", formid="loginForm", action="/login", method="post", form=form)
-    return render_template("login.html", formid="loginForm", action="/login", method="post", form=form)
+            return render_template("login_old.html", formid="loginForm", action="/login", method="post", form=form)
+    return render_template("login_old.html", formid="loginForm", action="/login", method="post", form=form)
 
 
 
