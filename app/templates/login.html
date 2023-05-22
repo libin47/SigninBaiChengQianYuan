@@ -120,7 +120,7 @@
     </style>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" id="container">
     <div class="row content-row">
         <div class="col-sm-1 col-md-2 col-lg-2 hidden-xs"></div>
         <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
@@ -180,6 +180,7 @@
 </style>
 
 <script language="JavaScript">
+    var openid = "{{openid}}"
     function submit() {
         var name = $("#name").val()
         var phone = $("#tel").val()
@@ -209,7 +210,7 @@
             dataType: 'json',
             success: function (data) {
                 if(data['ok']){
-                    window.location.href = "/signin/"+openid;
+                    window.location.href = "/index/"+openid;
                 }
             }
         })
@@ -224,26 +225,8 @@
     var code = url.searchParams.get("code");
     var state = url.searchParams.get("state");
 
-    if(code==null) {
+    if(openid==null) {
         alert("请扫码打开！")
-    }
-    else {
-        $.ajax({
-            url: '/get_openid',
-            type: 'post',
-            data: JSON.stringify({
-                'code': code
-            }),
-            contentType: 'application/json',
-            dataType: 'json',
-            success: function (data) {
-                var openid = data['openid']
-                var signup = data['exist']
-                if (signup){
-                    window.location.href = "/index/"+openid;
-                }
-            }
-        })
     }
 
 

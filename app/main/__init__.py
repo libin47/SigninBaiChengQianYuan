@@ -69,7 +69,26 @@ def signin_ok():
 
 @b.route("/login", methods=["GET"])
 def signin():
-    return render_template("login.html")
+    code = request.args.get("code")
+    APPID = "wxcd05e9f3d5d1f7bf"
+    SECRET = "07f346d84f65d5ac9c5875e04599d6b0"
+    url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + APPID + '&secret=' + SECRET + '&code=' + code + '&grant_type=authorization_code'
+    r = requests.get(url)
+    data = r.json()
+    if 'errcode' in data.keys():
+        return jsonify({"ok": False})
+    else:
+        openid = data['openid']
+        db = getdb_user()
+        num = db.count_documents({"openid": openid})
+        if num > 0:
+            return index_openid(openid)
+        else:
+            kwargs = {
+                "openid": openid
+            }
+            return render_template("login.html", **kwargs)
+
 
 # @b.route("/signin/<openid>", methods=["Get"])
 # def signin(openid):
