@@ -224,16 +224,8 @@
     var code = url.searchParams.get("code");
     var state = url.searchParams.get("state");
 
-
-    const redirectToAuthPage = () => {
-        const callbackURL = encodeURIComponent(`https://wxapp.wind-watcher.cn/index`)
-        const state = encodeURIComponent('')
-        const wechatId = 'wxcd05e9f3d5d1f7bf'
-        const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`
-        window.location.href = redirectURI
-    }
     if(code==null) {
-        redirectToAuthPage()
+        alert("请扫码打开！")
     }
     else {
         $.ajax({
@@ -249,9 +241,6 @@
                 var signup = data['exist']
                 if (signup){
                     window.location.href = "/index/"+openid;
-                }
-                else {
-                    $('#subdiv').html('')
                 }
             }
         })
