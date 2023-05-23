@@ -54,9 +54,6 @@ def index_openid(openid):
     }
     return render_template("index.html", **kwargs)
 
-@b.route("/pdf", methods=["GET"])
-def pdf():
-    return render_template("6666.html")
 
 
 @b.route("/dingcanpinzheng", methods=["GET"])
@@ -88,6 +85,8 @@ def dingcanpinzheng():
     else:
         kwargs["ok"] = 0
         return render_template("dingcanpinzheng.html", **kwargs)
+
+
 @b.route("/dingcanpinzhengpng", methods=["GET"])
 def dingcanpinzhengpng():
     time = request.args.get("time")
@@ -104,6 +103,7 @@ def dingcanpinzhengpng():
         img_io.seek(0)
         return send_file(img_io, mimetype='image/png')
     return render_template("dingcan.html")
+    
 @b.route("/dingcan/<openid>", methods=["GET"])
 def dingcan(openid):
     db = getdb_dingcan()
