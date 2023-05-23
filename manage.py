@@ -22,8 +22,9 @@ if __name__ == '__main__':
     from werkzeug.middleware.proxy_fix import ProxyFix
     app.wsgi_app = ProxyFix(app.wsgi_app)
     port=os.getenv("PORT",8080)
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     if os.getenv("ENV") == "prod":
-        app.run(host="0.0.0.0",port=port,debug=False)
+        app.run(host="0.0.0.0", port=port,debug=False)
     else:
         app.run(host="0.0.0.0", port=port, debug=False)
 
