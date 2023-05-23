@@ -1,14 +1,15 @@
 /* 颜色 */
-/* page {
+page {
     --HuShuiLan: #b0d5df;
     --QingShanLan: #8fb2c9;
     --XingLan: #93b5cf;
     --JingLan: #5698c3;
     --KongQueLan: #0eb0c9;
 
-} */
+}
 /* 公共 */
 html{
+    width: 100%;
     height: 100%;
     position: absolute;
 }
@@ -16,14 +17,13 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
-    
     background-image: url('../static/bg.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
 footer {
-    padding: 50px 0;
+    padding-top: 50px;
     text-align: center;
     color: #efefef;
 }
@@ -176,14 +176,13 @@ footer .container .content img {
 }
 
 
-.hang1 {
+/* .hang1 {
     width: 90%;
     padding: 5%;
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 15px 15px;
     align-items: center;
-    /* background-color: rgb(255, 255, 255); */
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
@@ -210,11 +209,11 @@ footer .container .content img {
     font-size: 25px;
     text-align: center;
     background-color: rgb(252, 183, 187);
-}
+} */
 
 /* 订餐页面 */
 
-.title-dingcan {
+/* .title-dingcan {
     height: 40px;
     padding: 20px;
     display: flex;
@@ -226,11 +225,12 @@ footer .container .content img {
     width: 500px;
     padding-left: 20px;
     font-size: 20px;
-}
+} */
+
+
 .dingcanlist {
     width: 100%;
     padding: 0;
-    background-color: rgb(255, 255, 255);
 }
 .dingcanday {
     display: block;
@@ -239,17 +239,33 @@ footer .container .content img {
     line-height: 1.5;
     padding: 10px;
     font-size: 16px;
-    color: #7CAE23;
+    color: #b0d5df;
     
 }
 .dingcanday .riqi {
     padding-bottom: 20px;
 }
+
+.dingcanpinzheng {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    line-height: 1.2;
+    padding: 10px;
+    font-size: 18px;
+    color: #d9feff;
+}
+.dingcanpinzheng .dingcanpinzheng-sub {
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .dingcanfan {
     border-bottom: 1px solid #e9e9e9;
     /* border-top: 1px solid #e9e9e9; */
-    background-color: aliceblue;
-    color: #000000;
+    background-color: #5697c370;
+    color: #f1ffe8;
     padding-left: 8px;
     padding-right: 8px;
     font-family: "Lucida Console", "Courier New", monospace;
@@ -263,7 +279,7 @@ footer .container .content img {
 
 .dingcanfan .dingcanok{
     font-size: 16px;
-    color:#000;
+    color:#ffffff;
     font-weight: bold;
     font-family: "Lucida Console", "Courier New", monospace;
 }
@@ -410,6 +426,89 @@ footer .container .content img {
 }
 .modal-button .modal-enter:active {
     background-color: #e1e1e1;
+    box-shadow: 0 3px #666;
+    transform: translateY(3px);
+}
+/* 签到页面 */
+
+.container-new {
+    font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: block;
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    padding: 20px;
+    position: relative;
+}
+.page-header {
+    border-bottom-color: rgb(238, 238, 238);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: flex;
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    padding: 20px;
+    justify-content: center;
+}
+
+form {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: block;
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 20px;
+    text-size-adjust: 100%;
+    width: 100%;
+    padding: 12px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.form-group {
+    padding-top: 8px;
+}
+.form-group label {
+    font-size:17px;
+}
+
+.form-group .item {
+    padding-top: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form-group .item input{
+    height: 28px;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.commit-btn {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.commit-btn button {
+    width: 100px;
+    height: 40px;
+    /* background-color: #d9feff;; */
+    border: 1px solid #1d2d1e;
+    font-size: 24px;
+    box-shadow: 0px 3px #666;
+    font-family: "Lucida Console", "Courier New", monospace;
+    border-style: outset;
+
+}
+.commit-btn button:active {
+    background-color: #25335a;
     box-shadow: 0 3px #666;
     transform: translateY(3px);
 }

@@ -7,156 +7,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
     <title>百城千园行活动签到</title>
-    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/static/bootstrap.min.css">
     <link rel="stylesheet" href="/static/blue.css">
-    <link rel="stylesheet" href="/static/animate.min.css">
-    <style type="text/css">
+    <link rel="stylesheet" href="/static/animate.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/static/mymain.css">
 
-        boby{
-            font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #333;
-            background-color: #fff;
-            margin: 0;
-            display: block;
-            box-sizing: border-box;
-        }
-        .container-fluid {
-            margin-right: auto;
-            margin-left: auto;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-        .content-row{
-            padding: 0 0 50px;
-        }
-        .row{
-            margin-left: -15px;
-            margin-right: -15px;
-        }
-
-        label {
-            font-weight: normal;
-        }
-
-        .item {
-            margin-left: 40px;
-            margin-right: 40px;
-        }
-
-        .float-btn {
-            /*position: fixed; */
-            bottom: 15px; right: 20%;
-
-        }
-
-        /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-            background-color: #F5F5F5;
-        }
-
-        /*定义滚动条轨道 内阴影+圆角*/
-        ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-            border-radius: 3px;
-            background-color: #F5F5F5;
-        }
-
-        /*定义滑块 内阴影+圆角*/
-        ::-webkit-scrollbar-thumb {
-            border-radius: 3px;
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-            background-color: #aaa;
-        }
-
-        #submitBtnEx {
-            margin-top: 60px;
-            width: 100px;
-        }
-
-        .font_3 {
-            font-size: 22px;
-        }
-
-        .attachImg{
-            width: 100px;
-            margin-top: 10px;
-        }
-        #tipDiv{
-            margin-top: 60px;
-            font-size: 17px;
-            font-family: 黑体;
-            border-top: 1px dashed #ccc;
-            padding: 15px 25px 0;
-            display: none;
-        }
-        .mt1{
-            margin-top: 10px;
-        }
-        .mt2{
-            margin-top: 15px;
-        }
-
-        #codeDiv{
-            width: 45%;
-            border: 1px solid #ccc;
-            text-align: center;
-            background-color: #eee;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-        }
-        .desc{
-            color: #939393;
-            font-size: 13px;
-            /*margin-bottom: 10px;*/
-        }
-    </style>
 </head>
 <body>
-<div class="container-fluid" id="container">
-    <div class="row content-row">
-        <div class="col-sm-1 col-md-2 col-lg-2 hidden-xs"></div>
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
-            <div class="page-header">
-                <h4>请填写签到信息</h4>
-            </div>
-            <form class="form-horizontal" id="enrollForm" onsubmit="return checkForm(this)" role="form" method="post" action="/enrollInfo/saveEnrollInfo">
-               <div class="form-group">
-                    <label class="item control-label" style="font-size:17px;">姓名</label>
-                    <div class="item">
-                        <input type="text" class="form-control" value="" id="name" name="name" autocomplete="off" placeholder="必填" required="required">
-                    </div>
+    <div class="title">
+        <img class="logo" src="../static/百城千园行.png"/>
+        <a class="head-text">
+            <div class="head-text-main">工赋园区·数智未来</div>
+            <div class="head-text-sub">百城千园行-张家口站</div>
+        </a>
+    </div>
+
+    <div class="container-new">
+        <div class="page-header">
+            请填写签到信息
+        </div>
+        <form id="enrollForm" onsubmit="return checkForm(this)" role="form" method="post" action="/enrollInfo/saveEnrollInfo">
+            <div class="form-group">
+                <label>姓名</label>
+                <div class="item">
+                    <input type="text" class="form-control" value="" id="name" name="name" autocomplete="off" placeholder="必填" required="required">
                 </div>
+            </div>
+            <div class="form-group">
+                <label>手机</label>
+                <div class="item">
+                    <input type="text" id="tel" class="form-control"
+                    value="" name="phone" autocomplete="off" placeholder="必填"
+                    pattern="[0-9]{11}" maxlength="11">
+                </div>
+            </div>
                 <div class="form-group">
-                    <label class="item control-label" style="font-size:17px;">手机</label>
-                    <div class="item">
-                        <input type="text" id="tel" class="form-control"
-                        value="" name="phone" autocomplete="off" placeholder="必填"
-                        pattern="[0-9]{11}" maxlength="11">
-                    </div>
+                <label>单位</label>
+                <div class="item">
+                    <input type="text" class="form-control" value="" id="danwei" name="work" autocomplete="off" placeholder="必填" required="required">
                 </div>
-                 <div class="form-group">
-                    <label class="item control-label" style="font-size:17px;">单位</label>
-                    <div class="item">
-                        <input type="text" class="form-control" value="" id="danwei" name="work" autocomplete="off" placeholder="必填" required="required">
-                    </div>
-                </div>
-            </form>
-            <div id="tipDiv"></div>
-            <div class="float-btn" id="subdiv">
-                <button type="button" onclick="submit();" class="btn btn-primary center-block">签到</button>
             </div>
+        </form>
+        <div class="commit-btn" id="subdiv">
+            <button type="button" onclick="submit();">签到</button>
         </div>
         <div class="col-sm-1 col-md-2 col-lg-2 hidden-xs"></div>
     </div>
-</div>
+
+
+<footer>
+    <div class="container">
+      <div class="content">
+        <p>Copyright©2023  河北联通  提供技术支持</p>
+        <img src="../static/liantong.png"/>
+        <!-- <p>Technical support: support@yourcompany.com</p> -->
+      </div>
+    </div>
+  </footer>
 
 <script src="/static/jquery.min.js"></script>
 <style>

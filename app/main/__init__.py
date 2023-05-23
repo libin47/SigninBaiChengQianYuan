@@ -133,6 +133,14 @@ def timeanpai():
 def signin_ok():
     return render_template("signin.html")
 
+@b.route("/login2/<openid>", methods=["GET"])
+def signin2(openid):
+    kwargs = {
+        "openid": openid
+    }
+    return render_template("login.html", **kwargs)
+
+
 @b.route("/login", methods=["GET"])
 def signin():
     code = request.args.get("code")

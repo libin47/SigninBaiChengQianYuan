@@ -11,9 +11,16 @@
 
 </head>
 <body>
-    <div class="title-dingcan">
+    <!-- <div class="title-dingcan">
         <img class="logo" src="http://image.wind-watcher.cn/3b24846e60b2fcff5a82028fab1c9836?h=100&w=100"/ onclick="tohome()">
-        <a class="head-text-dingcan">百城千园行活动订餐</a>
+        <a class="head-text-dingcan">百城千园行</a>
+    </div> -->
+    <div class="title" onclick="tohome()">
+        <img class="logo" src="../static/百城千园行.png"/>
+        <a class="head-text">
+            <div class="head-text-main">百城千园行-张家口站</div>
+            <div class="head-text-sub">活动订餐</div>
+        </a>
     </div>
     <div class="dingcanlist">
         <div class="dingcanday">
@@ -21,16 +28,16 @@
             <div class="dingcanfan">
                 <div class="diancanmiaoshu">午饭(自助餐) </div>
                 {% if data[0] %}
-                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(29,1)" data-time="29" data-value="1">查看凭证</button></div>
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(29,1)">查看凭证</button></div>
                 {% else %}
-                    <button type="button" class="dingcanbutton" onclick="myBtn(29,1)" data-time="29" data-value="1">预约</button>
+                    <button type="button" class="dingcanbutton" onclick="myBtn(29,1)">预约</button>
                 {% endif %}
             </div>
             <div class="dingcanfan">晚饭(自助餐)
                 {% if data[1] %}
-                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(29,2)" data-time="29" data-value="2">查看凭证</button></div>
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(29,2)">查看凭证</button></div>
                 {% else %}
-                    <button type="button" class="dingcanbutton" onclick="myBtn(29,2)" data-time="29" data-value="2">预约</button>
+                    <button type="button" class="dingcanbutton" onclick="myBtn(29,2)">预约</button>
                 {% endif %}
             </div>
         </div>
@@ -38,27 +45,36 @@
             <div class="riqi">5月30日 星期二</div>
             <div class="dingcanfan">早饭(自助餐) 
                 {% if data[2] %}
-                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,0)" data-time="30" data-value="0">查看凭证</button></div>
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,0)">查看凭证</button></div>
                 {% else %}
-                    <button type="button" class="dingcanbutton" onclick="myBtn(30,0)" data-time="30" data-value="0">预约</button>
+                    <button type="button" class="dingcanbutton" onclick="myBtn(30,0)">预约</button>
                 {% endif %}
             </div>
             <div class="dingcanfan">午饭(自助餐)
                 {% if data[3] %}
-                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,1)" data-time="30" data-value="1">查看凭证</button></div>
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,1)">查看凭证</button></div>
                 {% else %}
-                    <button type="button" class="dingcanbutton" onclick="myBtn(30,1)" data-time="30" data-value="1">预约</button>
+                    <button type="button" class="dingcanbutton" onclick="myBtn(30,1)">预约</button>
                 {% endif %}
             </div>
             <div class="dingcanfan">晚饭(自助餐)
                 {% if data[4] %}
-                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,2)" data-time="30" data-value="2">查看凭证</button></div>
+                    <div class="dingcanok">已预约 <button type="button" class="dingcanbutton" onclick="myBtnLook(30,2)">查看凭证</button></div>
                 {% else %}
-                    <button type="button" class="dingcanbutton" onclick="myBtn(30,2)" data-time="30" data-value="2">预约</button>
+                    <button type="button" class="dingcanbutton" onclick="myBtn(30,2)">预约</button>
                 {% endif %}
             </div>
         </div> 
     </div>
+    <footer>
+        <div class="container">
+          <div class="content">
+            <p>Copyright©2023  河北联通  提供技术支持</p>
+            <img src="../static/liantong.png"/>
+            <!-- <p>Technical support: support@yourcompany.com</p> -->
+          </div>
+        </div>
+    </footer>
 
     <div id="myModal" class="modal">
         <!-- 弹窗内容 -->

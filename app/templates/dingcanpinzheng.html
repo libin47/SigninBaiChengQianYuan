@@ -11,26 +11,43 @@
 
 </head>
 <body>
-    <div class="title-dingcan">
-        <img class="logo" src="http://image.wind-watcher.cn/3b24846e60b2fcff5a82028fab1c9836?h=100&w=100"/ onclick="tohome()">
-        <a class="head-text-dingcan">百城千园行活动订餐</a>
+    <div class="title" onclick="tohome()">
+        <img class="logo" src="../static/百城千园行.png"/>
+        <a class="head-text">
+            <div class="head-text-main">百城千园行-张家口站</div>
+            <div class="head-text-sub">订餐凭证</div>
+        </a>
     </div>
     {% if ok %}
-        <div class="dingcanlist">
-            <div class="dingcanday">
-                <div class="riqi">
-                    {{name}}{{phone}}：您已预定{{time}}的{{value}}！
-                </div>
-            </div>
-        </div>
-        <img src="{{png}}" class="img-qrcode" style="width: 100%;justify-self:center;"/>
+    <div class="dingcanpinzheng">
+        {{name}} {{phone}}  {{danwei}}
+    </div>
+    <div class="dingcanpinzheng">
+        您已预定<a class="dingcanpinzheng-sub">{{time}}</a>的<a class="dingcanpinzheng-sub">{{value}}</a>！</div>
+    </div>
+    <div style="width:100% ;justify-content: center;display: flex; padding-top: 30px;">
+        <img src="{{png}}" class="img-qrcode" style="width: 60%;"/>
+    </div>
+    
     {% else %}
+    <div class="dingcanpinzheng">
         {{name}}{{phone}}：您尚未预定{{time}}的{{value}}！
+    </div>
+        
     {% endif %}
-
+    <footer>
+        <div class="container">
+          <div class="content">
+            <p>Copyright©2023  河北联通  提供技术支持</p>
+            <img src="../static/liantong.png"/>
+            <!-- <p>Technical support: support@yourcompany.com</p> -->
+          </div>
+        </div>
+    </footer>
 
 <script src="/static/jquery.min.js"></script>
 <script language="JavaScript">
+    var openid = "{{openid}}"
     function tohome(){
         window.location.href = "/index/"+openid
     }
