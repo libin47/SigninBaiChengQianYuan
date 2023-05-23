@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
     <title>百城千园行</title>
-    <link rel="stylesheet" type="text/css" href="/static/mymain.css?v=05231225">
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename = 'mymain.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/mymain.css?v=05231225"> -->
 
 </head>
 <body>
@@ -52,8 +53,9 @@
     <footer>
         <div class="container">
           <div class="content">
-            <p>Copyright©2023  河北联通  版权所有</p>
-            <p>Technical support: support@yourcompany.com</p>
+            <p>Copyright©2023  河北联通  提供技术支持</p>
+            <img src="../static/liantong.png"/>
+            <!-- <p>Technical support: support@yourcompany.com</p> -->
           </div>
         </div>
       </footer>

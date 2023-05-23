@@ -16,18 +16,21 @@ body {
     background-image: url('../static/bg.png');
     background-size: cover;
     background-repeat: no-repeat;
-};
+}
 
 footer {
     padding: 50px 0;
     text-align: center;
-    color: #c9c9c9;
-};
+    color: #efefef;
+}
+footer .container .content img {
+    height: 12px;
+}
   
 .container {
     max-width: 960px;
     margin: 0 auto;
-};
+}
   
 .content {
     font-size: 12px;
