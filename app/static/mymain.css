@@ -8,13 +8,17 @@
 
 } */
 /* 公共 */
+html{
+    height: 100%;
+    position: absolute;
+}
 body {
     height: 100%;
     width: 100%;
     margin: 0;
-    position: absolute;
+    
     background-image: url('../static/bg.png');
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
@@ -41,6 +45,21 @@ footer .container .content img {
     margin-bottom: 10px;    
 }
 
+
+.loading {
+    height: 60px;
+    padding: 30px;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+.loading-sub {
+    color: #ffffff;
+    font-size: 24px;
+}
+
 .img-qrcode {
     width: 80%;
     justify-self:center;
@@ -49,7 +68,7 @@ footer .container .content img {
 /* 主页 */
 .title {
     height: 60px;
-    padding: 20px;
+    padding: 30px;
     padding-bottom: 0px;
     display: flex;
     align-items: center;
@@ -141,7 +160,7 @@ footer .container .content img {
 }
 
 .maintext {
-    padding-left: 30px;
+    padding-left: 35px;
     padding-right: 130px;
     padding-bottom: 25px;
     color: #ffffff;

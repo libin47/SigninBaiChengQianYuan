@@ -12,7 +12,6 @@
 
 </head>
 <body>
-    {% if openid %}
     <div class="title">
         <img class="logo" src="../static/百城千园行.png"/>
         <a class="head-text">
@@ -20,12 +19,14 @@
             <div class="head-text-sub">百城千园行-张家口站</div>
         </a>
     </div>
+
+    {% if openid %}
     <div class="weather">
         <a class="weather-text">签到成功！欢迎您，{{name}}</a>
     </div>
     <div class="maintext">
         * 活动
-        <div class="maintext-sub">京津翼工业互联网协同发展示范区供需对接活动暨工业互联网一体化进园区“ 百城千园行”张家口站启动仪式</div>
+        <div class="maintext-sub">京津冀工业互联网协同发展示范区供需对接活动暨工业互联网一体化进园区“百城千园行”张家口站启动仪式</div>
     </div>
     <div class="maintext">
         * 时间：
@@ -47,7 +48,12 @@
         <a href="#" class="floating-button" style="font-weight: bold;border-style: inset;background-color: #5698c3;color: aliceblue;">主页</a>
         <a href="#" class="floating-button" onclick="toShijian();">会议安排</a>
         <a href="#" class="floating-button" onclick="toDingcan();">酒店订餐</a>
-      </div>
+    </div>
+    {% else %}
+    <div class="loading">
+        <!-- <img src="../static/liantong.png" style="height: 36px;"/> -->
+        <div class="loading-sub">登录中……</div>
+    </div>
     {% endif %}
 
     <footer>
@@ -69,7 +75,9 @@
         const state = encodeURIComponent('')
         const wechatId = 'wxcd05e9f3d5d1f7bf'
         const redirectURI = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${wechatId}&redirect_uri=${callbackURL}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`
+        // console.log(redirectURI)
         window.location.href = redirectURI
+        
     }
     var openid = "{{openid}}"
     if(!openid){

@@ -52,9 +52,10 @@ def index_openid(openid):
         "phone": phone,
         "openid": openid
     }
-    response = make_response(render_template('index.html', **kwargs))
-    response.headers['Cache-Control'] = 'no-store'
-    return response
+    return render_template('index.html', **kwargs)
+    # response = make_response(render_template('index.html', **kwargs))
+    # response.headers['Cache-Control'] = 'no-store'
+    # return response
 
 
 
@@ -147,7 +148,7 @@ def signin():
         db = getdb_user()
         num = db.count_documents({"openid": openid})
         if num > 0:
-            return index_openid(openid)
+            redirect(url_for("/index/"+openid))
         else:
             kwargs = {
                 "openid": openid
