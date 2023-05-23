@@ -5,6 +5,9 @@ from app.main import login_manager
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 app.config["SECRET_KEY"] = "dfduirtibs1231431"
 app.config["REMEMBER_COOKIE_DURATION"] = timedelta(days=2)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config["CACHE_TYPE"] = "null"
+
 
 login_manager.init_app(app)
 # m = Manager(app)
@@ -22,7 +25,7 @@ if __name__ == '__main__':
     from werkzeug.middleware.proxy_fix import ProxyFix
     app.wsgi_app = ProxyFix(app.wsgi_app)
     port=os.getenv("PORT",8080)
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
     if os.getenv("ENV") == "prod":
         app.run(host="0.0.0.0", port=port,debug=False)
     else:
