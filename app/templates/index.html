@@ -11,17 +11,52 @@
 
 </head>
 <body>
+    {% if openid %}
     <div class="title">
-        <img class="logo" src="http://image.wind-watcher.cn/3b24846e60b2fcff5a82028fab1c9836?h=100&w=100"/>
-        <a class="head-text-main">你好，{{name}}</a>
+        <img class="logo" src="../static/百城千园行.png"/>
+        <a class="head-text">
+            <div class="head-text-main">工赋园区·数智未来</div>
+            <div class="head-text-sub">百城千园行-张家口站</div>
+        </a>
     </div>
     <div class="weather">
-        <a class="weather-text">今日天气:晴 11-25°C</a>
+        <a class="weather-text">签到成功！欢迎您，{{name}}</a>
     </div>
-    <div class="hang1">
-        <div class="shijian" onclick="toShijian();">时间安排</div> 
-        <div class="dingcan" onclick="toDingcan();">订餐</div>
+    <div class="maintext">
+        * 活动
+        <div class="maintext-sub">京津翼工业互联网协同发展示范区供需对接活动暨工业互联网一体化进园区“ 百城千园行”张家口站启动仪式</div>
     </div>
+    <div class="maintext">
+        * 时间：
+        <div class="maintext-sub">2023.5.29-2023.5.30</div>
+    </div>
+    <div class="maintext">
+        * 地点：
+        <div class="maintext-sub">张家口国际大酒店、南山汽车产业基地、东山产业集聚区、空港经济开发区</div>
+    </div>
+    <div class="maintext">
+        * 主题：
+        <div class="maintext-sub">工赋园区·数智未来</div>
+    </div>
+    <!-- <div class="hang1">
+        <div class="shijian" onclick="toShijian();">会议安排</div> 
+        <div class="dingcan" onclick="toDingcan();">酒店订餐</div>
+    </div> -->
+    <div class="floating-buttons">
+        <a href="#" class="floating-button" style="font-weight: bold;border-style: inset;background-color: #5698c3;color: aliceblue;">主页</a>
+        <a href="#" class="floating-button" onclick="toShijian();">会议安排</a>
+        <a href="#" class="floating-button" onclick="toDingcan();">酒店订餐</a>
+      </div>
+    {% endif %}
+
+    <footer>
+        <div class="container">
+          <div class="content">
+            <p>Copyright©2023  河北联通  版权所有</p>
+            <p>Technical support: support@yourcompany.com</p>
+          </div>
+        </div>
+      </footer>
 
 
 

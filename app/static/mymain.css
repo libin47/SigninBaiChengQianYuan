@@ -1,5 +1,42 @@
+/* 颜色 */
+page {
+    --HuShuiLan: #b0d5df;
+    --QingShanLan: #8fb2c9;
+    --XingLan: #93b5cf;
+    --JingLan: #5698c3;
+    --KongQueLan: #0eb0c9;
+
+}
+/* 公共 */
 body {
+    height: 100%;
+    width: 100%;
     margin: 0;
+    position: absolute;
+    background-image: url('../static/bg.png');
+    background-size: cover;
+    /* background-position: center center; */
+    background-repeat: no-repeat;
+}
+
+footer {
+    padding: 50px 0;
+    text-align: center;
+    color: #c9c9c9;
+}
+  
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+  
+.content {
+    font-size: 12px;
+    
+}
+  
+.content p {
+    margin-bottom: 10px;    
 }
 
 .img-qrcode {
@@ -9,48 +46,113 @@ body {
 
 /* 主页 */
 .title {
-    height: 40px;
+    height: 60px;
     padding: 20px;
     padding-bottom: 0px;
     display: flex;
     align-items: center;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
 }
 .logo {
     margin: auto;
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
 
 }
 .title .head-text {
     text-align: left;
-    width: 500px;
-    padding-left: 20px;
+    width: 100%;
     font-size: 20px;
+    color: #ffffff;
 }
-.title .head-text-main {
+.title .head-text .head-text-main {
     text-align: left;
-    width: 500px;
+    width: 100%;
     padding-left: 20px;
-    text-shadow: 1px 1px;
+    /* text-shadow: 1px 1px; */
     font-size: 20px;
     font-weight: bold;
+    color: #ffffff;
 }
+.title .head-text .head-text-sub {
+    text-align: right;
+    width: 100%;
+    padding-top: 5px;
+    padding-right: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
 .weather {
     width: 90%;
     height: 30px;
     padding: 5%;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     display: grid;
 }
 
 .weather .weather-text {
     text-align: right;
-    width: 50%;
-    font-size: 16px;
+    width: 60%;
+    font-size: 14px;
     justify-self: right;
     font-family: "Lucida Console", "Courier New", monospace;
+    color: #ffffff;
 }
+
+.floating-buttons {
+    position: fixed;
+    right: 20px;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+  
+.floating-button {
+    display: block;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    color: rgb(176, 255, 229);
+    text-shadow: 1px 1px;
+    text-shadow: white;
+    text-align: center;
+    font-family: "Lucida Console", "Courier New", monospace;
+    /* background-color: #5698c3; */
+    border: 5px solid #fff;
+    border-radius: 10%;
+    border-style: outset;
+    margin-bottom: 13px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.floating-button:last-child {
+    margin-bottom: 0;
+}
+
+.floating-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.maintext {
+    padding-left: 30px;
+    padding-right: 130px;
+    padding-bottom: 25px;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    
+}
+.maintext-sub {
+    padding-left: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    
+}
+
 
 .hang1 {
     width: 90%;
@@ -59,7 +161,7 @@ body {
     grid-template-columns: auto auto;
     grid-gap: 15px 15px;
     align-items: center;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
@@ -136,10 +238,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-.dingcanfan .diancanmiaoshu{
-    /* justify-content: flex-start; */
-    /* display: flex; */
-}
+
 .dingcanfan .dingcanok{
     font-size: 16px;
     color:#000;

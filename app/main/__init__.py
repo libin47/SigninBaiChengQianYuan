@@ -153,28 +153,6 @@ def signin():
             return render_template("login.html", **kwargs)
 
 
-# @b.route("/signin/<openid>", methods=["Get"])
-# def signin(openid):
-#     db = getdb_user()
-#     data = db.find_one({"openid": openid})
-#     db.close()
-#     name = data['name']
-#     phone = data['phone']
-#     print(data)
-#     # insert
-#     db2 = getdb()
-#     db2.insert_one({
-#         "openid": openid,
-#         "time": time.time(),
-#     })
-#     db2.close()
-#     # print
-#     kwargs = {
-#         "name": name,
-#         "phone": phone,
-#     }
-#     return render_template("signin.html", **kwargs)
-
 @b.route("/signup", methods=["POST"])
 def signup():
     d = json.loads(request.get_data(as_text=True))

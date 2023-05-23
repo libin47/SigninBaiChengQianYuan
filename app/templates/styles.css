@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+}
+
+.container {
+  max-width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.floating-buttons {
+  position: fixed;
+  right: 20px;
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
+.floating-button {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-color: #007bff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.floating-button:last-child {
+  margin-bottom: 0;
+}
+
+.floating-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
