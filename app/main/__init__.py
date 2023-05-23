@@ -13,7 +13,7 @@ import pickle
 from database_mongo import getdb_user, getdb_dingcan
 import requests
 
-from flask import render_template, jsonify
+from flask import render_template, jsonify, make_response
 from flask import Blueprint, request, redirect, url_for, flash, send_file
 from flask_login import login_user, login_required, logout_user
 from wtforms import StringField, PasswordField, BooleanField
@@ -52,7 +52,9 @@ def index_openid(openid):
         "phone": phone,
         "openid": openid
     }
-    return render_template("index.html", **kwargs)
+    response = make_response(render_template('index.html', **kwargs))
+    response.headers['Cache-Control'] = 'no-store'
+    return response
 
 
 
