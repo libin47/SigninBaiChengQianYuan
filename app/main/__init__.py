@@ -148,7 +148,7 @@ def signin():
         db = getdb_user()
         num = db.count_documents({"openid": openid})
         if num > 0:
-            redirect(url_for("/index/"+openid))
+            redirect("/index/"+openid)
         else:
             kwargs = {
                 "openid": openid
