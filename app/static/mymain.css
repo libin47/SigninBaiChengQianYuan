@@ -1,12 +1,12 @@
 /* 颜色 */
-page {
+/* page {
     --HuShuiLan: #b0d5df;
     --QingShanLan: #8fb2c9;
     --XingLan: #93b5cf;
     --JingLan: #5698c3;
     --KongQueLan: #0eb0c9;
 
-}
+} */
 /* 公共 */
 body {
     height: 100%;
@@ -15,20 +15,19 @@ body {
     position: absolute;
     background-image: url('../static/bg.png');
     background-size: cover;
-    /* background-position: center center; */
     background-repeat: no-repeat;
-}
+};
 
 footer {
     padding: 50px 0;
     text-align: center;
     color: #c9c9c9;
-}
+};
   
 .container {
     max-width: 960px;
     margin: 0 auto;
-}
+};
   
 .content {
     font-size: 12px;
@@ -53,6 +52,7 @@ footer {
     align-items: center;
     /* background-color: rgb(255, 255, 255); */
 }
+
 .logo {
     margin: auto;
     height: 60px;
