@@ -197,6 +197,20 @@ def dingcan_api():
     openid = str(d["openid"])
     date = int(d["time"])
     value = int(d["value"])
+    # 验证
+    mon = time.localtime( time.time() ).tm_mon
+    day = time.localtime( time.time() ).tm_mday
+    hour = time.localtime( time.time() ).tm_hour
+    hour_limit = [9, 14, 19]
+    if mon>5:
+        return jsonify({"ok": False})
+    else:
+        if day>date:
+            return jsonify({"ok": False})
+        elif day==(date):
+            if hour > hour_limit[value]:
+                return jsonify({"ok": False})
+
     db = getdb_dingcan()
     db.insert_one({
         "openid": openid,
