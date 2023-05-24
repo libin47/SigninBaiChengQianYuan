@@ -97,7 +97,6 @@ def dingcanpinzhengpng():
     value = request.args.get("value")
     db = getdb_dingcan()
     number = db.count_documents({"openid": openid, "date": int(time), "value": int(value)})
-    print(number)
     db.close()
     if number > 0:
         codeimg = qrcode.make("https://wxapp.wind-watcher.cn/dingcanpinzheng?openid="+openid+"&time="+time+"&value="+value)
@@ -216,7 +215,6 @@ def get_openid():
     url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='+APPID+'&secret='+SECRET+'&code='+code+'&grant_type=authorization_code'
     r = requests.get(url)
     data = r.json()
-    print(data)
     if 'errcode' in data.keys():
         return jsonify({"ok": False})
     else:
