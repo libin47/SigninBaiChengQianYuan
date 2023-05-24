@@ -132,6 +132,13 @@ def timeanpai(openid):
     }
     return render_template("timeanpai.html", **kwargs)
 
+@b.route("/weather/<openid>", methods=["GET"])
+def weather(openid):
+    kwargs = {
+        "openid": openid
+    }
+    return render_template("weather.html", **kwargs)
+
 @b.route("/signin_ok", methods=["GET"])
 def signin_ok():
     return render_template("signin.html")

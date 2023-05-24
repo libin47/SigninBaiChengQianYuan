@@ -16,26 +16,18 @@
         <img class="logo" src="../static/百城千园行.png"/>
         <a class="head-text">
             <div class="head-text-main">百城千园行-张家口站</div>
-            <div class="head-text-sub">订餐凭证</div>
+            <div class="head-text-sub">当地天气</div>
         </a>
     </div>
-    {% if ok %}
-    <div class="dingcanpinzheng">
-        {{name}} {{phone}}  {{danwei}}
+
+    <div>
+        <!--第一种：使用object标签-->
+            <object type="text/html" data="https://widget-page.qweather.net/h5/index.html?md=01456&bg=1&lc=auto&key=26fa5a79e7b542308b27656b305f8ee6&v=_1684909357589" style="width:100%;height: 50rem;">
+            </object>
+            <!--第二种：使用iframe 标签-->
+            <!-- <iframe  style="width:100%;height:100%;"  src='https://widget-page.qweather.net/h5/index.html?md=036&bg=1&lc=auto&key=080753c3b1cf4e17933986da50492f40&v=_1684905708464'></iframe> -->
     </div>
-    <div class="dingcanpinzheng">
-        您已预定<a class="dingcanpinzheng-sub">{{time}}</a>的<a class="dingcanpinzheng-sub">{{value}}</a>！</div>
-    </div>
-    <div style="width:100% ;justify-content: center;display: flex; padding-top: 30px;">
-        <img src="{{png}}" class="img-qrcode" style="width: 15rem;height: 15rem;"/>
-    </div>
-    
-    {% else %}
-    <div class="dingcanpinzheng">
-        {{name}}{{phone}}：您尚未预定{{time}}的{{value}}！
-    </div>
-        
-    {% endif %}
+
     <footer>
         <div class="container">
           <div class="content">
@@ -46,9 +38,13 @@
         </div>
     </footer>
 
+
 <script src="/static/jquery.min.js"></script>
 <script language="JavaScript">
     var openid = "{{openid}}"
+
+
+
     function tohome(){
         window.location.href = "/index/"+openid
     }
