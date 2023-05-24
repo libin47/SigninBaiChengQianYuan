@@ -117,6 +117,30 @@
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         WeixinJSBridge.call('hideToolbar');
     });
+    history.pushState(null, null, document.URL); //禁止网页返回上一页
+    window.addEventListener('popstate', function() { 
+    history.pushState(null, null, document.URL); 
+    });
+    sessionStorage.setItem('key', 1);　　　　　　 pushHistory();
+        window.addEventListener("popstate", function (e) {
+            if(sessionStorage.getItem('key') != 1) {
+                sessionStorage.setItem('key', 1);
+            }
+            if(sessionStorage.getItem('key') == 1) {
+                document.addEventListener('WeixinJSBridgeReady', function(){ WeixinJSBridge.call('closeWindow'); }, false);
+                WeixinJSBridge.call('closeWindow');
+                parent.WeixinJSBridge.call('closeWindow');//网上有人认为微信内置浏览器和本地开发测试的环境不一样，微信内部是采用iframe方式加载页面的（暂未得到考证），所以我采用了两种方式都写的兼容写法
+            }
+
+        }, false);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+
 
     
 </script>

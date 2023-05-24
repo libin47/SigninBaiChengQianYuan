@@ -33,7 +33,7 @@ footer {
     color: #efefef;
 }
 footer .container .content img {
-    height: 12px;
+    height: 2rem;
 }
   
 .container {
@@ -502,19 +502,19 @@ form {
     align-items: center;
 }
 .time-hour .time-time {
-    font-size: 0.9rem;
-    width: 6rem;
+    font-size: 1rem;
+    width: 7rem;
     padding-right: 1rem;
 }
 .time-hour .time-thing {
     text-align: right;
 }
 .time-address {
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     color:rgb(176, 255, 229);
     display: flex;
     padding: 1rem;
-    padding-top: 0.5rem;
+    padding-top: 0.3rem;
     justify-content: right;
     text-align: right;
 }
