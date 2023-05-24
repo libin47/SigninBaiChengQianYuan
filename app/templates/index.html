@@ -12,6 +12,7 @@
 
 </head>
 <body>
+    <div class="background"></div>
     <div class="title">
         <img class="logo" src="../static/百城千园行.png"/>
         <a class="head-text">
@@ -29,17 +30,18 @@
         <div class="maintext-sub">京津冀工业互联网协同发展示范区供需对接活动暨工业互联网一体化进园区“百城千园行”张家口站启动仪式</div>
     </div>
     <div class="maintext">
-        * 时间：
+        * 时间
         <div class="maintext-sub">2023.5.29-2023.5.30</div>
     </div>
     <div class="maintext">
-        * 地点：
+        * 地点
         <div class="maintext-sub">张家口国际大酒店、南山汽车产业基地、东山产业集聚区、空港经济开发区</div>
     </div>
     <div class="maintext">
-        * 主题：
+        * 主题
         <div class="maintext-sub">工赋园区·数智未来</div>
     </div>
+
     <!-- <div class="hang1">
         <div class="shijian" onclick="toShijian();">会议安排</div> 
         <div class="dingcan" onclick="toDingcan();">酒店订餐</div>
@@ -70,6 +72,7 @@
 
 <script src="/static/jquery.min.js"></script>
 <script language="JavaScript">
+
     const redirectToAuthPage = () => {
         const callbackURL = encodeURIComponent(`https://wxapp.wind-watcher.cn/login`)
         const state = encodeURIComponent('')
@@ -84,16 +87,35 @@
         redirectToAuthPage()
     }
     
-    function toYicheng(){
-        window.location.href = "/pdf";
-    };
     function toShijian(){
-        window.location.href = "/timeanpai";
+        window.location.href = "/timeanpai/"+openid;
     };
     function toDingcan(){
         window.location.href = "/dingcan/"+openid;
     };
 
+
+
+    // $(function() {
+    // 	if (window.history && window.history.pushState) {
+    // 		$(window).on('popstate', function () {
+    // 			window.history.pushState('forward', null, '#');
+    // 			window.history.forward(1);
+    // 		});
+    // 	}
+    //     window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+    //     window.history.forward(1);
+    // });
+
+    // jQuery(document).ready(function ($) {
+	//     if (window.history && window.history.pushState) {
+	// 		$(window).on('popstate', function () {
+	// 			window.history.forward(1);
+	// 		});
+  	// 	}
+    // });
+
+    
 </script>
 </body>
 </html>

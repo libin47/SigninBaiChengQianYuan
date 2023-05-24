@@ -8,22 +8,27 @@ page {
 
 }
 /* 公共 */
-html{
+/* html{
     width: 100%;
     height: 100%;
-    position: absolute;
-}
+} */
 body {
+    margin: 0;
+}
+
+.background {
+    z-index: -1;
+    position: fixed;
     height: 100%;
     width: 100%;
-    margin: 0;
     background-image: url('../static/bg.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
 footer {
-    padding-top: 50px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     text-align: center;
     color: #efefef;
 }
@@ -175,57 +180,7 @@ footer .container .content img {
     
 }
 
-
-/* .hang1 {
-    width: 90%;
-    padding: 5%;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 15px 15px;
-    align-items: center;
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
-.hang1 .yicheng{
-    width: 100%;
-    height: 150px;
-    line-height: 150px;
-    font-size: 25px;
-    text-align: center;
-    background-color: rgb(175, 208, 255);
-}
-.hang1 .shijian{
-    width: 100%;
-    height: 150px;
-    line-height: 150px;
-    font-size: 25px;
-    text-align: center;
-    background-color: rgb(169, 182, 255);
-}
-.hang1 .dingcan{
-    width: 100%;
-    height: 150px;
-    line-height: 150px;
-    font-size: 25px;
-    text-align: center;
-    background-color: rgb(252, 183, 187);
-} */
-
 /* 订餐页面 */
-
-/* .title-dingcan {
-    height: 40px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-}
-.title-dingcan .head-text-dingcan {
-    text-align: left;
-    width: 500px;
-    padding-left: 20px;
-    font-size: 20px;
-} */
 
 
 .dingcanlist {
@@ -511,4 +466,66 @@ form {
     background-color: #25335a;
     box-shadow: 0 3px #666;
     transform: translateY(3px);
+}
+/* 时间安排 */
+.time-header {
+    /* border-bottom-color: rgb(238, 238, 238);
+    border-bottom-style: solid;
+    border-bottom-width: 0.1rem;
+    box-sizing: border-box; */
+    color: rgb(255, 255, 255);
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    padding: 20px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+.time-day {
+    border-bottom-color: rgb(238, 238, 238);
+    border-bottom-style: solid;
+    border-bottom-width: 0.1rem;
+    border-top-color: rgb(238, 238, 238);
+    border-top-style: solid;
+    border-top-width: 0.1rem;
+    box-sizing: border-box;
+    padding: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+.time-hour {
+    font-size: 0.9rem;
+    display: flex;
+    padding: 1rem;
+    padding-bottom: 0rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.time-hour .time-time {
+    font-size: 0.9rem;
+    width: 6rem;
+    padding-right: 1rem;
+}
+.time-hour .time-thing {
+    text-align: right;
+}
+.time-address {
+    font-size: 0.5rem;
+    color:rgb(176, 255, 229);
+    display: flex;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    justify-content: right;
+    text-align: right;
+}
+.time-space {
+    display: flex;
+    justify-content: center;
+}
+.time-space .time-space-sub {
+    border-bottom-color: rgb(238, 238, 238);
+    border-bottom-style:dashed;
+    border-bottom-width: 0.01rem;
+    box-sizing: border-box;
+    width: 80%;
 }

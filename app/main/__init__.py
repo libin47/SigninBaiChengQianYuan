@@ -125,9 +125,12 @@ def dingcan(openid):
     }
     return render_template("dingcan.html", **kwargs)
 
-@b.route("/timeanpai", methods=["GET"])
-def timeanpai():
-    return render_template("timeanpai.html")
+@b.route("/timeanpai/<openid>", methods=["GET"])
+def timeanpai(openid):
+    kwargs = {
+        "openid": openid
+    }
+    return render_template("timeanpai.html", **kwargs)
 
 @b.route("/signin_ok", methods=["GET"])
 def signin_ok():
