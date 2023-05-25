@@ -125,7 +125,8 @@ footer .container .content img {
     padding-top: 0.5rem;
     /* padding: 5%; */
     /* background-color: rgb(255, 255, 255); */
-    display: grid;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .weather .weather-text {
