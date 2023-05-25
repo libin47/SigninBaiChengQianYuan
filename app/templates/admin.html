@@ -2,517 +2,140 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>志愿系统管理</title>
+    <title>签到系统管理</title>
     <script src="static/jquery.min.js"></script>
-<!--    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">-->
-<!--    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>-->
     <style type="text/css">
-		/*log弹窗*/
-		.mylog{
-            display: none; /* 默认隐藏 */
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+        tr td {
+            border-color: rgb(238, 238, 238);
+            border-width: 0.1rem;
+            border-style: solid;
+            box-sizing: border-box;
         }
-		        /* 弹窗内容 */
-        .log-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 90%;
-			height: 80%;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-            -webkit-animation-name: animatetop;
-            -webkit-animation-duration: 0.4s;
-            animation-name: animatetop;
-            animation-duration: 0.4s
-        }
-        .log-header {
-            padding: 2px 16px;
-            background-color: #5cb85c;
-            color: white;
-			height: 10%;
-        }
-
-        .log-body {padding: 2px 16px;height: 80%;width:100%;}
-		.log-foot {height: 20%;width:100%;font-size: 12px;}
-
-        /* 弹窗 (background) */
-        .modal {
-            display: none; /* 默认隐藏 */
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        /* 弹窗内容 */
-        .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 80%;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-            -webkit-animation-name: animatetop;
-            -webkit-animation-duration: 0.4s;
-            animation-name: animatetop;
-            animation-duration: 0.4s
-        }
-
-        /* 添加动画 */
-        @-webkit-keyframes animatetop {
-            from {top:-300px; opacity:0}
-            to {top:0; opacity:1}
-        }
-
-        @keyframes animatetop {
-            from {top:-300px; opacity:0}
-            to {top:0; opacity:1}
-        }
-
-        /* 关闭按钮 */
-        .close {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-header {
-            padding: 2px 16px;
-            background-color: #5cb85c;
-            color: white;
-        }
-
-        .modal-body {padding: 2px 16px;}
-
-        .modal-footer {
-            padding: 2px 16px;
-            background-color: #5cb85c;
-            color: white;
-        }
-        .tab {
-            background: #efefef;
-        }
-        .tab span {
-            display: inline-block;
-            height: 50px;
-            width: 200px;
-            line-height: 50px;
+        button {
+            display: block;
+            width: 5.5rem;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            font-size: 1rem;
+            color: #000000;
+            background-color: #6ea6ffaf;
+            text-shadow: 0px 0px;
+            text-shadow: white;
             text-align: center;
+            font-family: "Lucida Console", "Courier New", monospace,Helvetica, Arial, sans-serif;
+            border: 0.2rem solid rgb(214, 255, 241);
+            border-radius: 0.5rem;
+            border-style: outset;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
         }
-        .tab .checked {  background: #999;  color: #fff; }
-        .table{  width: 100%; height:100%; border-collapse:collapse;    border-spacing:0;}
-        .table thead{background-color: lightgray;}
-        .table td,.table th { width: 200px  ; border-bottom: none; border-left: none; border-right: 1px solid #CCC; border-top: 1px solid #DDD; padding: 2px 3px 3px 4px;text-align: center; }
-        .table tr{ border-bottom: 1px solid #B74; }
-        .rtext{ color: red}
-        .htext{ color: goldenrod}
-        .btext { color: deepskyblue}
-        .itext { color: blue}
-        .greybg { background-color: #dddddd}
+        select {
+            width: 5.5rem;
+            height: 2.5rem;
+        }
+
     </style>
 </head>
+<body>
+    <button id='submit-sign'>签到查询</button>
+    <p><span style="display: flex;">
+        <select name="date" id="date">
+            <option value="29">5月29日</option>
+            <option value="30">5月30日</option>
+        </select>
+        <select name="fan" id="fan">
+            <option value="0">早餐</option>
+            <option value="1">午餐</option>
+            <option value="2">晚餐</option>
+        </select>
+        <button id='submit-fan'>订餐查询</button>
+    </span>
+    </p>
+    
+    <div id="result"></div>
 
-<div id="myModal" class="modal">
-  <!-- 弹窗内容 -->
-	<div class="modal-content">
-	  <div class="modal-header">
-	    <h2 id="modalname">弹窗头部</h2>
-	  </div>
-	  <div class="modal-body">
-	    <p id="modalbody">弹窗文本...</p>
-	  </div>
-	</div>
-</div>
-
-<div id="myLog" class="mylog">
-  <!-- 弹窗内容 -->
-	<div class="log-content">
-	  <div class="log-header">
-	    <h2 id="logname">弹窗头部</h2>
-	  </div>
-		<div class="log-body">
-		<textarea id="logbody"  style="width: 80%;height: 100%"></textarea>
-		</div>
-	  <div class="log-foot">
-	    <h3 id="logfoot">弹窗底部</h3>
-	  </div>
-	</div>
-</div>
-
-
-<script>
-    var modal = document.getElementById("myModal")
-	var mylog = document.getElementById("myLog")
-
-	function checklog(province_id, bd=false){
-		if(bd){
-			province_id = 'rank'+province_id
-		}
-		var settings = {
-            "url": '/findLogProvince',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "province_id": province_id,
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            }),
-        };
-		mylog.style.display = 'block'
-		$('#logname').html(province_id)
-		$('#logbody').html("请等待……")
-		$('#logfoot').html('<button style="width: 80%;height: 50px; padding: 0;margin: 0;" onclick="checklog('+province_id+')">刷新</button>'+'错误日志可移步/log?prvoince_id='+province_id)
-        $.ajax(settings).done(
-            function (data){
-                var log = data.log
-				$('#logbody').html(log)
-            }
-        )
-	}
-
-    function open_modal(province_id, batch){
-		$('#modalname').html(province_id +'号省——'+ batch)
-		$('#modalbody').html('请等待~')
-		modal.style.display = 'block'
-        var settings = {
-            "url": '/findBatchInfo',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "province_id": province_id,
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            }),
-        };
-
-        $.ajax(settings).done(
-            function (data) {
-                select_data = ''
-                data = data['batch_info']
-                for(var i=0;i<data.length;i++){
-                    if(data[i].batch_norm == batch){
-                        select_data = data[i]
-                        break
-                    }
-                }
-                if (select_data){
-                    result = ''
-                    for(var key in select_data) {
-                        result += '<div>' + key + ':'+ select_data[key] + '</div>'
-                    }
-                    $('#modalbody').html(result)
-                    modal.style.display = 'block'
-                }
-            }
-        )
-    }
-
-    window.onclick = function (event){
-        if (event.target==modal){
-            modal.style.display = "none"
-        }
-		if (event.target==mylog){
-            mylog.style.display = 'none'
-        }
-    }
-
-    function loadstat() {
-        var settings = {
-            "url": '/findProvinceStat',
-            "method": "GET",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": {
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            },
-        };
-        $.ajax(settings).done(
-            function (data) {
-                r = []
-                for (var i = 1; i < 31; i++) {
-                    r.push(data[i.toString()])
-                }
-                console.log(r)
-
-                domtable='        <thead>\n' +
-                    '        <tr>\n' +
-                    '            <td>省份ID</td>\n' +
-                    '            <td>省份</td>\n' +
-                    '            <td>批次</td>\n' +
-
-                    '            <td>状态</td>\n' +
-                    '            <td>操作</td>\n' +
-                    '            <td>操作</td>\n' +
-                    '            <td>操作</td>\n' +
-                    '            <td>榜单日志</td>\n' +
-                    '            <td>日志</td>\n' +
-                    '        </tr>\n' +
-                    '        </thead>'
-
-                for (var i = 0; i < 30; i++) {
-                    var batchok = ''
-                    for(let j=0; j<r[i].batch_ok.length; j++){
-                        batchok += '<div class="btext" onclick=\'open_modal(' +r[i].province_id+ ',"'+r[i].batch_ok[j] + '")\'>' + r[i].batch_ok[j] + '</div>'
-                    }
-                    var batcherror = ''
-                    for(let j=0; j<r[i].batch_fail.length; j++){
-                        batcherror = batcherror + r[i].batch_fail[j] + ' '
-                    }
-                    domtable += '<tr class='+((i%2==1)?"greybg":"")+'>\n' +
-                    '<td>' + r[i].province_id + '</td>\n' +
-                    '<td>' + r[i].province + '</td>\n' +
-                        '<td>' +
-                        batchok +
-                        '<div class="rtext">' + batcherror + '</div>' +
-                        '</td>\n' +
-                    '<td>' +
-                        (r[i].initing?'<div class="itext">初始化中</div>' :
-                            (r[i].init ? '<div class="btext">OK</div>' :'<div class="htext">无数据</div>'))
-                        +
-                        (r[i].creating?'<div class="itext">/更新中</div>':
-                            (r[i].create ? '' :'<div class="rtext">/更新失败</div>'))
-                        +
-                        (r[i].exceling?'<div class="itext">/榜单生成中</div>':'')
-                        + '</td>\n' +
-                    '<td><button '+((r[i].creating||r[i].initing)?"disabled":"")+' onclick="startprovince('+r[i].province_id+')">启动</button></td>\n' +
-                    '<td><button '+((r[i].creating||r[i].initing)?"disabled":"")+' onclick="updateprovince('+r[i].province_id+')">更新</button></td>\n' +
-                    '<td>' +
-                        '<button '+((r[i].exceling)?"disabled":"")+' onclick="startxlsx('+r[i].province_id+')">榜单生成</button>' +
-                        '<button '+((r[i].excel)?"":"disabled")+' onclick="downloadxlsx('+r[i].province_id+')">榜单下载</button>' +
-					'</td>\n<td>' +
-                        '<a onclick="checklog('+r[i].province_id+', true)" >榜单日志</a>' +
-					'</td>\n' +
-                    '<td><a onclick="checklog('+r[i].province_id+')" >查看日志</a></td>\n' +
-
-                    '</tr>\n'
-                }
-                domtable += '<tr><td></td><td></td><td></td><td></td><td></td><td>' +
-                    '<button onclick="restartall(1,30)">全部重启</button>' +
-                    '<button onclick="restartall(1,9)">重启1-9</button>' +
-                    '<button onclick="restartall(10,18)">重启10-18</button>' +
-                    '<button onclick="restartall(19,30)">重启19-30</button>' +
-                    '</td><td>' +
-                    '<button onclick="updateall(1,30)">更新全部</button>' +
-                    '<button onclick="updateall(1,9)">更新1-9</button>' +
-                    '<button onclick="updateall(10,18)">更新10-18</button>' +
-                    '<button onclick="updateall(19,30)">更新19-30</button>' +
-                    '<button onclick="updateall(1,1,[4,5,7,8,12,14,16,21,22,23,24,25,26,28,29,30])">更新旧高考</button>' +
-                    '<button onclick="updateall(1,1,[3, 6, 10, 13, 17, 18, 19, 27])">更新八省</button>' +
-                    '<button onclick="updateall(1,1,[1,2,9,11,15,20])">更新4+2省</button>' +
-                    '</td><td>' +
-                    '<button onclick="updaterule()">更新rule表</button>' +
-                    '<button onclick="clearRedis()">清除redis缓存</button>' +
-                    '</td><td>' +
-                    '</td></tr>'
-                $('#table').html(domtable)
-            }
-        )
-    }
-
-</script>
-
-<body onload="loadstat()">
-<a target="_blank" href="/index" >打开演示系统</a>
-<table class="table" id="table" bgcolor="#f5f5f5"></table>
-<script>
-
-
-    function restartall(top, end){
-        var settings = {
-            "url": '/startAll',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "top": top,
-                "end": end,
-                "replace": true,
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            }),
-        };
-        console.log("重启全部")
-        $.ajax(settings).done(
-            alert("重新启动"+top+"-"+end)
-        )
-    }
-    function updateall(top, end, plist=[]){
-          var settings = {
-            "url": '/updateAll',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "top": top,
-                "end": end,
-                "province_list": plist,
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            }),
-        };
-        $.ajax(settings).done(
-            plist.length>0?
-                alert("开始更新"+plist+"省份的数据，请手动刷新页面及查看日志确定状态"):
-                alert("开始更新"+top+"-"+end+"省份的数据，请手动刷新页面及查看日志确定状态")
-        )
-        setTimeout("loadstat()", "100")
-    }
-
-    function updaterule(){
-        var settings = {
-            "url": '/delRuleTable',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            }
-        };
-        $.ajax(settings).done(
-            alert("重设rule表")
-        )
-        setTimeout("loadstat()", "100")
-    }
-
-    function clearRedis(){
-        var settings = {
-            "url": '/clearRedis',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            }
-        };
-        $.ajax(settings).done(
-            alert("清楚redis缓存")
-        )
-        setTimeout("loadstat()", "100")
-    }
-    function startxlsx(privince){
-        var settings = {
-            "url": '/createXlsx?province_id='+privince,
-            "method": "GET",
-            "headers": {
-                "Content-Type": 'application/json',
-            }
-        };
-        $.ajax(settings).done(
-            alert("开始生成该省的榜单，进度详情请查看日志")
-        )
-        setTimeout("loadstat()", "100")
-    }
-    function downloadxlsx(privince){
-        url = '/downloadXlxs?province_id='+privince,
-		window.open(url)
-    }
-
-
-    function startprovince(privince){
-        var settings = {
-            "url": '/startProvince',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "province_id": privince,
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            })
-        };
-        $.ajax(settings).done(
-            alert("开始启动该省的服务，进度详情请查看日志")
-        )
-        setTimeout("loadstat()", "100")
-    }
-    function updateprovince(privince){
-        var settings = {
-            "url": '/updateProvince',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "province_id": privince,
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            }),
-        };
-        $.ajax(settings).done(
-            alert("开始更新该省志愿数据，进度详情请查看日志")
-        )
-        setTimeout("loadstat()", "100")
-    }
-    function delprovince(privince){
-        var settings = {
-            "url": '/delProvinceTable',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "province_id": privince,
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            }),
-        };
-        $.ajax(settings).done(
-            alert("删除该省的数据表，内存中的数据不会清理")
-        )
-        setTimeout("loadstat()", "100")
-    }
-
-    function readlog(province){
-        window.open(window.location.host+"/log?province="+province)
-    }
-    function delall(){
-       var settings = {
-            "url": '/deltable',
-            "method": "POST",
-            "headers": {
-                "Content-Type": 'application/json',
-            },
-            "dataType": "json",
-            "data": JSON.stringify({
-                "token": '5wUkP4xyKj34RxsOF3EppNTZtEerY0dpnTZBt75ibkc='
-            }),
-        };
-        $.ajax(settings).done(
-            alert("删除两张表并进行重建")
-        )
-        setTimeout("loadstat()", "1000")
-    }
-</script>
 </body>
+
+<script language="JavaScript">
+    $('#submit-fan').click(function () {
+        $('#result').html('')
+        date = $("#date").val()
+        fan = $("#fan").val()
+        var settings = {
+            "url": '/get_fan_api',
+            "method": "POST",
+            "headers": {
+                "Content-Type": 'application/json',
+            },
+            "data": JSON.stringify({
+                    'date': date,
+                    'fan': fan,
+                }),
+            "dataType": "json",
+        };
+
+
+        $.ajax(settings).done(
+            function (data) {
+                data = data['data']
+
+                r = '<thead> <tr><th colspan="6">共'+data.length +
+                            '人订餐</th></tr><tr>'+
+                            '<td>openid</td>' +
+                            '<td>日期</td>'+
+                            '<td>餐点</td>'+
+                            '<td>姓名</td>'+
+                            '<td>手机</td>'+
+                            '<td>单位</td>'+
+                            '</tr></thead>'
+                for(var i=0;i<data.length;i++){
+                    r += '<tr>' + 
+                        '<td>' + data[i]['openid'] + '</td>' + 
+                        '<td>5月' + data[i]['date'] +'日</td>' + 
+                        '<td>' + ((data[i]['value']==0)?'早饭':((data[i]['value']==1)?'午饭':'晚饭')) + '</td>' + 
+                        '<td>' + data[i]['name'] + '</td>' + 
+                        '<td>' + data[i]['phone'] + '</td>' + 
+                        '<td>' + data[i]['danwei'] + '</td></tr>'
+                }
+                $('#result').html(r)
+            }
+        )
+    })
+
+    $('#submit-sign').click(function () {
+        $('#result').html('')
+        var settings = {
+            "url": '/get_user_api',
+            "method": "POST",
+            "headers": {
+                "Content-Type": 'application/json',
+            },
+            "dataType": "json",
+        };
+
+        $.ajax(settings).done(
+            function (data) {
+                data = data['data']
+
+                r = '<thead> <tr><th colspan="4">共'+data.length +
+                            '人签到</th></tr><tr>'+
+                            '<td>openid</td>' +
+                            '<td>姓名</td>'+
+                            '<td>手机</td>'+
+                            '<td>单位</td>'+
+                            '</tr></thead>'
+                for(var i=0;i<data.length;i++){
+                    r += '<tr>' + 
+                        '<td>' + data[i]['openid'] + '</td>' + 
+                        '<td>' + data[i]['name'] + '</td>' + 
+                        '<td>' + data[i]['phone'] + '</td>' + 
+                        '<td>' + data[i]['danwei'] + '</td></tr>'
+                }
+                $('#result').html(r)
+            }
+        )
+    })
+
+</script>
 </html>

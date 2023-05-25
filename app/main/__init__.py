@@ -241,16 +241,61 @@ def get_openid():
             return jsonify({"ok": True, "exist": False, 'openid': data['openid']})
 
 
+@b.route("/get_fan_api", methods=["POST"])
+def get_fan_api():
+    d = json.loads(request.get_data(as_text=True))
+    date = int(d["date"])
+    fan = int(d["fan"])
+    db = getdb_dingcan()
+    result = db.coll.aggregate([
+        {
+           '$match':{
+               'date': date,
+               'value': fan
+           }
+        },
+        {
+            '$lookup':{
+                'from': 'user',
+                'localField': 'openid',
+                'foreignField': 'openid',
+                'as': 'result'
+            }
+        }
+    ]
+    )
+    db.close()
+    result = list(result)
+    data = []
+    for r in result:
+        x = dict()
+        x['openid'] = r['openid']
+        x['date'] = r['date']
+        x['value'] = r['value']
+        x['len'] = len(r['result'])
+        x['name'] = r['result'][0]['name']
+        x['phone'] = r['result'][0]['phone']
+        x['danwei'] = r['result'][0]['danwei']
+        data.append(x)
+    return jsonify({"ok": True, "data": data})
 
-
-
+@b.route("/get_user_api", methods=["POST"])
+def get_user_api():
+    db = getdb_user()
+    result = db.find({})
+    db.close()
+    result = list(result)
+    data = []
+    for r in result:
+        r['_id'] = str(r['_id'])
+        data.append(r)
+    return jsonify({"ok": True, "data": data})
 
 
 
 
 
 @b.route("/admin", methods=["GET"])
-@login_required
 def admin():
     return render_template("admin.html")
 
