@@ -517,7 +517,7 @@ form {
     padding-right: 1rem;
 }
 .time-hour .time-thing {
-    text-align: left;
+    text-align: right;
     font-size: 1.1rem;
     /* white-space: pre-wrap;
     word-break: break-all;
