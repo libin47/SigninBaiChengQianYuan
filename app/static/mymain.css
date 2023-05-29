@@ -514,7 +514,10 @@ form {
 .time-hour .time-time {
     font-size: 1rem;
     width: 3rem;
+    min-width: 3rem;
     padding-right: 1rem;
+    display: flex;
+    justify-content: center;
 }
 .time-hour .time-thing {
     text-align: right;
