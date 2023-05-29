@@ -483,10 +483,6 @@ form {
 }
 /* 时间安排 */
 .time-header {
-    /* border-bottom-color: rgb(238, 238, 238);
-    border-bottom-style: solid;
-    border-bottom-width: 0.1rem;
-    box-sizing: border-box; */
     color: rgb(255, 255, 255);
     font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
@@ -521,8 +517,11 @@ form {
     padding-right: 1rem;
 }
 .time-hour .time-thing {
-    text-align: right;
+    text-align: left;
     font-size: 1.1rem;
+    /* white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word; */
 }
 .time-address {
     font-size: 0.9rem;
