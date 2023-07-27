@@ -89,7 +89,13 @@ footer .container .content img {
 }
 .home-title > .logo-right{
     margin: auto;
-    height: 1rem;
+    width: 3.5rem;
+    float: right;
+    padding-right: 0.61rem;
+}
+.home-title > .logo-right2{
+    margin: auto;
+    width: 4rem;
     float: right;
     padding-right: 0.61rem;
 }
