@@ -70,6 +70,31 @@ footer .container .content img {
     justify-self:center;
 }
 
+.home-title {
+    height: 3rem;
+    padding: 1rem;
+    padding-bottom: 0px;
+    display: flex;
+    align-items: center;
+}
+.home-title > .logo {
+    margin: auto;
+    height: 2rem;
+    width: 2rem;
+
+}
+.home-title > .head-text {
+    text-align: left;
+    width: 100%;
+    color: #ffffff;
+
+}
+.home-title > .head-text > .head-text-main {
+    text-align: left;
+    width: 100%;
+    padding-left: 20px;
+    font-size: 1rem;
+}
 /* 主页 */
 .title {
     height: 4rem;
@@ -137,17 +162,28 @@ footer .container .content img {
     font-family: "Lucida Console", "Courier New", monospace;
     color: #ffffff;
 }
-
+/*
 .floating-buttons {
     position: fixed;
     right: 1.3rem;
     bottom: 50%;
     transform: translateY(50%);
   }
-  
+*/
+.floating-buttons {
+    margin-top: 8rem;
+    position: relative;
+    overflow: hidden;
+    margin-left:1rem;
+    margin-right:1rem;
+}
+
 .floating-button {
-    display: block;
-    width: 5.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 7rem;
     height: 2.5rem;
     line-height: 2.5rem;
     font-size: 1rem;
@@ -166,6 +202,20 @@ footer .container .content img {
     margin-bottom: 1rem;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s;
+
+
+
+
+
+
+    position: relative;
+    margin: 0.5rem;
+    float: left;
+    width: calc((100% - 2.8rem) / 2);
+}
+
+.floating-button > svg{
+    padding-right: 1rem;
 }
 
 .floating-button:last-child {
@@ -185,6 +235,17 @@ footer .container .content img {
     font-size: 1.1rem;
     font-family: "Lucida Console", "Courier New", monospace,Helvetica, Arial, sans-serif;
     
+}
+.maintext-top {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    padding-top: 0rem;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: "Lucida Console", "Courier New", monospace,Helvetica, Arial, sans-serif;
 }
 .maintext-sub {
     padding-left: 1.2rem;
@@ -485,9 +546,10 @@ form {
 .time-header {
     color: rgb(255, 255, 255);
     font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    padding: 20px;
-    padding-bottom: 15px;
+    font-size: 1.5rem;
+    padding: 1rem;
+    font-weight: bold;
+    padding-bottom: 1rem;
     display: flex;
     justify-content: center;
 }
@@ -502,12 +564,12 @@ form {
     padding: 1.2rem;
     display: flex;
     justify-content: center;
+    font-weight: bold;
 }
 .time-hour {
     font-size: 0.9rem;
     display: flex;
     padding: 1rem;
-    padding-bottom: 0rem;
     justify-content: space-between;
     align-items: center;
 }
@@ -522,7 +584,7 @@ form {
 }
 .time-hour .time-thing {
     text-align: right;
-    font-size: 1.1rem;
+    font-size: 1rem;
     /* white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word; */
@@ -545,5 +607,46 @@ form {
     border-bottom-style:dashed;
     border-bottom-width: 0.01rem;
     box-sizing: border-box;
-    width: 80%;
+    width: 90%;
+}
+
+.huiyixuzhi {
+    border-bottom: 1px solid #e9e9e9;
+    background-color: #00000080;
+    color: #f1ffe8;
+
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    padding-bottom: 1rem;
+    margin: 0.8rem;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 1rem;
+    min-height: 3rem;
+    line-height: 1.5rem;
+    align-items: center;
+
+    background-color: #ffffffc0;
+    color: #000000;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    border-radius: 2rem;
+}
+.huiyixuzhi > .left{
+    padding-top: 0.5rem;
+    padding-bottom: 0.3rem;
+}
+.huiyixuzhi > .text{
+    text-indent: 2rem;
+    padding-bottom: 0.3rem;
+}
+.huiyixuzhi > .text > .bold{
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+.huiyixuzhi > .title{
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
 }

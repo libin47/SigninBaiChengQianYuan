@@ -13,34 +13,44 @@
 </head>
 <body>
     <div class="background"></div>
-    <div class="title">
+    <div class="home-title">
         <img class="logo" src="../static/百城千园行.png"/>
         <a class="head-text">
             <div class="head-text-main">工赋园区·数智未来</div>
-            <div class="head-text-sub">百城千园行-张家口站</div>
         </a>
     </div>
-    <div class="title-space"><div class="title-space-sub"></div></div>
+<!--    <div class="title-space"><div class="title-space-sub"></div></div>-->
 
-    <div class="weather">
-        <a class="weather-text">欢迎您！</a>
+<!--    <div class="weather">-->
+<!--        <a class="weather-text">欢迎您！</a>-->
+<!--    </div>-->
+
+
+    <div class="maintext-top" style="padding-top: 5rem;">
+        工业互联网一体化进园区进企业“百城千园行”活动
     </div>
-    <div class="maintext" style="padding-left: 2.4rem;padding-right: 2.4rem;padding-top: 1rem;">
-        京津冀工业互联网协同发展示范区供需对接活动暨工业互联网一体化进园区“百城千园行”张家口站启动仪式
+    <div class="maintext-top">
+        暨企业数字化转型发展
     </div>
-    <div class="maintext">
-        > 时间
-        <div class="maintext-sub">2023.5.29-2023.5.30</div>
+    <div class="maintext-top">
+        万全站启动仪式
     </div>
-    <div class="maintext">
-        > 地点
-        <div class="maintext-sub">张家口北辰五洲皇冠酒店</div>
-        <div class="maintext-sub">(住宿费用需自理)</div>
+    <div class="maintext-top" style="font-size: 2.4rem;font-weight:bold;padding-top:6rem;">
+        电子会务手册
     </div>
-    <div class="maintext">
-        > 主题
-        <div class="maintext-sub">工赋园区·数智未来</div>
-    </div>
+<!--    <div class="maintext">-->
+<!--        > 时间-->
+<!--        <div class="maintext-sub">2023.5.29-2023.5.30</div>-->
+<!--    </div>-->
+<!--    <div class="maintext">-->
+<!--        > 地点-->
+<!--        <div class="maintext-sub">张家口北辰五洲皇冠酒店</div>-->
+<!--        <div class="maintext-sub">(住宿费用需自理)</div>-->
+<!--    </div>-->
+<!--    <div class="maintext">-->
+<!--        > 主题-->
+<!--        <div class="maintext-sub">工赋园区·数智未来</div>-->
+<!--    </div>-->
 
     <!-- <div class="hang1">
         <div class="shijian" onclick="toShijian();">会议安排</div> 
@@ -48,19 +58,50 @@
     </div> -->
     <div class="floating-buttons">
         <!-- <a href="#" class="floating-button" style="font-weight: bold;border-style: inset;background-color: #5698c3;color: aliceblue;">主页</a> -->
-        <a href="#" class="floating-button" onclick="toWeather();">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-moon-fill" viewBox="0 0 16 16">
-                <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5h-.027z"/>
-                <path d="M11.286 1.778a.5.5 0 0 0-.565-.755 4.595 4.595 0 0 0-3.18 5.003 5.46 5.46 0 0 1 1.055.209A3.603 3.603 0 0 1 9.83 2.617a4.593 4.593 0 0 0 4.31 5.744 3.576 3.576 0 0 1-2.241.634c.162.317.295.652.394 1a4.59 4.59 0 0 0 3.624-2.04.5.5 0 0 0-.565-.755 3.593 3.593 0 0 1-4.065-5.422z"/>
+        <a href="#" class="floating-button" onclick="toHuiyixuzhi();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
               </svg>
-            天气
+              会议须知
         </a>
         <a href="#" class="floating-button" onclick="toShijian();">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
               </svg>
-              日程
+              日程安排
         </a>
+        <a href="#" class="floating-button" onclick="toZuowei();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z"/>
+              </svg>
+            座位图
+        </a>
+        <a href="#" class="floating-button" onclick="toChengche();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189l.956-1.913A.5.5 0 0 1 4.309 3h7.382a.5.5 0 0 1 .447.276l.956 1.913a.51.51 0 0 1-.497.731c-.91-.073-3.35-.17-4.597-.17-1.247 0-3.688.097-4.597.17a.51.51 0 0 1-.497-.731Z"/>
+              </svg>
+            乘车安排
+        </a>
+        <a href="#" class="floating-button" onclick="toJianjieWQ();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+              </svg>
+            万全简介
+        </a>
+        <a href="#" class="floating-button" onclick="toJianjieHA();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+              </svg>
+            怀安简介
+        </a>
+        <a href="#" class="floating-button" onclick="toWeather();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-moon-fill" viewBox="0 0 16 16">
+                <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5h-.027z"/>
+                <path d="M11.286 1.778a.5.5 0 0 0-.565-.755 4.595 4.595 0 0 0-3.18 5.003 5.46 5.46 0 0 1 1.055.209A3.603 3.603 0 0 1 9.83 2.617a4.593 4.593 0 0 0 4.31 5.744 3.576 3.576 0 0 1-2.241.634c.162.317.295.652.394 1a4.59 4.59 0 0 0 3.624-2.04.5.5 0 0 0-.565-.755 3.593 3.593 0 0 1-4.065-5.422z"/>
+              </svg>
+            本地天气
+        </a>
+
     </div>
 
     <footer>
@@ -77,15 +118,29 @@
 
 <script src="/static/jquery.min.js"></script>
 <script language="JavaScript">
+
+    function toHuiyixuzhi(){
+        window.location.href = "/huiyixuzhi";
+    };
     
     function toShijian(){
         window.location.href = "/timeanpai";
     };
-
+    function toZuowei(){
+        window.location.href = "/zuowei";
+    };
+    function toChengche(){
+        window.location.href = "/chengche";
+    };
     function toWeather(){
         window.location.href = "/weather"   ;
     };
-
+    function toJianjieWQ(){
+        window.location.href = "/wanquan";
+    };
+    function toJianjieHA(){
+        window.location.href = "/huaian";
+    };
 
     
 </script>

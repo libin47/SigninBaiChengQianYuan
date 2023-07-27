@@ -38,6 +38,42 @@ def wxyanzheng():
 def index():
     return render_template("index.html")
 
+@b.route("/timeanpai", methods=["GET"])
+def timeanpai():
+    return render_template("timeanpai.html")
+
+@b.route("/weather", methods=["GET"])
+def weather():
+    return render_template("weather.html")
+    
+@b.route("/huiyixuzhi", methods=["GET"])
+def huiyixuzhi():
+    return render_template("huiyixuzhi.html")
+
+@b.route("/zuowei", methods=["GET"])
+def zuowei():
+    return render_template("zuowei.html")
+
+@b.route("/chengche", methods=["GET"])
+def chengche():
+    return render_template("chengche.html")
+
+@b.route("/wanquan", methods=["GET"])
+def wanquan():
+    return render_template("wanquan.html")
+
+@b.route("/huaian", methods=["GET"])
+def huaian():
+    return render_template("huaian.html")
+
+
+
+
+
+
+
+
+
 
 @b.route("/index/<openid>", methods=["GET"])
 def index_openid(openid):
@@ -124,13 +160,7 @@ def dingcan(openid):
     }
     return render_template("dingcan.html", **kwargs)
 
-@b.route("/timeanpai", methods=["GET"])
-def timeanpai():
-    return render_template("timeanpai.html")
 
-@b.route("/weather", methods=["GET"])
-def weather():
-    return render_template("weather.html")
 
 @b.route("/signin_ok", methods=["GET"])
 def signin_ok():
