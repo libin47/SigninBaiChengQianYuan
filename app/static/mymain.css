@@ -108,7 +108,7 @@ footer .container .content img {
 .home-title > .head-text > .head-text-main {
     text-align: left;
     width: 100%;
-    padding-left: 20px;
+    padding-left: 0.5rem;
     font-size: 1rem;
 }
 /* 主页 */
@@ -118,15 +118,14 @@ footer .container .content img {
     padding-left: 0.5rem;
     padding-bottom: 0px;
     display: flex;
-    align-items: center;
+    align-items: start;
 }
 .title > svg{
-    height: 4rem;
+    height: 2rem;
     width: 4rem;
     color: white;
 }
 .logo {
-    margin: auto;
     height: 4rem;
     width: 4rem;
     height: 2rem;
@@ -141,7 +140,7 @@ footer .container .content img {
 .title .head-text .head-text-main {
     text-align: left;
     width: 100%;
-    padding-left: 20px;
+    padding-left: 0.5rem;
     font-size: 1.2rem;
     font-weight: bold;
 }
