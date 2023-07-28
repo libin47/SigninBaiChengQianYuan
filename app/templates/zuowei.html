@@ -8,7 +8,10 @@
     <meta name="renderer" content="webkit">
     <title>百城千园行-座位安排</title>
     <link rel="stylesheet" type="text/css" href="/static/mymain.css?v=072106">
+    <link rel="stylesheet" href="/static/viewer.min.css">
 
+    <!-- 引入 viewer.js 的 JavaScript -->
+    <script src="/static/viewer.min.js"></script>
 </head>
 <body>
     <div class="background"></div>
@@ -23,9 +26,11 @@
         </a>
     </div>
     <div class="huiyixuzhi">
-        <img onclick="tozuowei()" class="zuoweiimage" src="../static/zuoweibiao.png"/>
-
+        <img data-original="../static/zuoweibiao.png" class="zuoweiimage" src="../static/zuoweibiao.png"/>
     </div>
+<!--    <div class="image-gallery">-->
+<!--      <img src="../static/zuoweibiao.png" alt="Image 1" data-original="../static/zuoweibiao.png">-->
+<!--    </div>-->
     <footer>
         <div class="container">
           <div class="content">
@@ -37,14 +42,22 @@
     </footer>
 
 
+
 <script src="/static/jquery.min.js"></script>
 <script language="JavaScript">
     function tohome(){
         window.location.href = "/index"
     };
-    function tozuowei(){
-        window.location.href = "/static/zuoweibiaoHD.png"
-    }
+
+  const viewer = new Viewer(document.querySelector('.huiyixuzhi'), {
+    url: 'data-original', // 使用 data-original 属性作为图片源
+    zoomRatio: 0.1, // 设置缩放比例
+    toolbar: false,
+  });
+
+
+
+
 
 </script>
 </body>
