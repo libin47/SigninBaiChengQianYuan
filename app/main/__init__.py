@@ -66,6 +66,14 @@ def wanquan():
 def huaian():
     return render_template("huaian.html")
 
+@b.route("/zuoweiimage", methods=["GET"])
+def zuoweiimage():
+    import base64
+    img_stream = ''
+    with open("app/static/zuoweibiao.png", 'r') as img_f:
+        img_stream = img_f.read()
+        img_stream = base64.b64encode(img_stream)
+    return img_stream
 
 
 
