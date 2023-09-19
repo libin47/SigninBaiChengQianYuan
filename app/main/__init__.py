@@ -29,6 +29,67 @@ import time
 
 b = Blueprint("main", __name__)
 
+k_title = "工业互联网一体化进园区进企业“百城千园行”活动暨企业数字化转型发展推进行动"
+k_title_city = "（经开区站）"
+k_title_sub = "百城千园行-经开区站"
+k_local = "张家口市经开区联通大楼六楼多功能会议室"
+k_elocal = "张家口国际大酒店一楼"
+k_zuowei = "../static/座位表.jpg"
+k_time = [
+    {"type": "main", "text": "9月21日-上午"},
+    {"time":"08:00-09:00", "text":"张家口市经开区联通大楼六楼多功能会议室报道"},
+    {"time":"09:00-09:05", "text":"主持人介绍与会领导和嘉宾"},
+    {"time":"09:05-09:10", "text":"经开区管委会分管领导致辞"},
+    {"time":"09:10-09:15", "text":"中国联合网络通信有限公司张家口市分公司副总经理致辞"},
+    {"time":"09:15-09:35", "text":"市工业和信息化局分管领导致辞"},
+    {"time":"09:35-09:55", "text":"企业如何实现数字化转型"},
+    {"time":"09:55-10:10", "text":"工赋园区、数智未来-锐捷网络带你迈向智能制造"},
+    {"time":"10:10-10:25", "text":"工业数字化转型安全实践"},
+    {"time":"10:25-10:30", "text":"签约仪式"},
+    {"time":"10:30-10:40", "text":"茶歇及观展"},
+    {"time":"10:40-11:00", "text":"河北北方铸业有限公司就信息化建设进行分享"},
+    {"time":"11:00-11:05", "text":"华夏银行张家口分行做“数字贷”产品推介"},
+    {"time":"11:05-11:10", "text":"中信银行张家口分行做“数字贷”产品推介"},
+    {"time":"11:10-11:20", "text":"中国银行张家口分行做数字人民币应用推介"},
+    {"time":"11:20-12:00", "text":"自由对接"},
+    {"time":"12:00", "text":"就餐"},
+]
+k_xuzhi = [
+    {"type": "title", "text": "会议须知"},
+    {"type": "text", "text": "您好!欢迎您来参加工业互联网一体化进园区进企业“百城千园行”活动暨企业数字化转型发展推进行动 (经开区站)，为确保会议的顺利进行，请您关注以下事项。"},
+    {"type": "left", "text": "一、严格遵守会议纪律"},
+    {"type": "text", "text": "1、会议开始后，请将手机关闭或置于静音状态，保持会场安静，不得在会场内接打电话，不得随意走动。"},
+    {"type": "text", "text": "2、会场内请勿吸烟，保持会场清洁。"},
+    {"type": "text", "text": "3、会场内摄像、录音统一由会务组安排"},
+    {"type": "text", "text": "4、与会人员会议期间如需帮助请与会务组联系，会务人员联系方式如下"},
+    {"type": "text", "text": "会务经理: 朱广乐18603237014"},
+    {"type": "text", "text": "酒店经理: 李经理18832397658"},
+    {"type": "left", "text": "二、会议时间和地点"},
+    {"type": "text", "text": "1、会议时间:"},
+    {"type": "text", "text": "2023年9月21日（星期四）:"},
+    {"type": "text", "text": "2、会议地点:"},
+    {"type": "text", "text": "张家口市经开区联通大楼六楼多功能会议室（河北省张家口市高新区敬业街）"},
+    {"type": "text", "text": "3、就餐地点:"},
+    {"type": "text", "text": "张家口国际大酒店一楼"},
+]
+k_jianjie = [
+    {"type": "title", "text": "张家口经开区简介"},
+    {"type": "text", "text": "张家口市位于河北省西北部，地处京、冀、晋、蒙四省通衢之地，距北京180公里，距天津港340公里，是沟通中原与北疆、连接环渤海经济圈和西北内陆资源区的重要节点。张家口市有19个县区，经开区既是开发区也是主城区，托四镇两街，面积148平方公里，辖38个行政村村、14个社区、1个国营农场，常驻人口38万。"},
+    {"type": "text", "text": "作为开发区，经开区拥有东山产业园区、现代产业园区等多个个产业园区，重点培育了“新能源、生物科技、楼宇经济、现代服务、文体旅游康养”五大产业，驻有金风科技、天津中环、神威制药等一批国内外知名企业。近年来，全区主导产业收入连续呈两位数增长，近期有望得到国务院批复，晋升为国家级开发区。作为主城区，市委、市政府和市直部门在这里办公，北方学院、建工学院、张家口技师学院、张家口职业技术学院4所大专院校坐落在这里，市博物馆、档案馆、图书馆、规划馆、地质博物馆、文化会展中心、奥体中心等文体场馆坐落在这里；经开区已经成为全市政治、文化、教育的中心。"},
+    {"type": "text", "text": "当前，经开区正处于战略机遇叠加、优势集中释放的黄金发展期，具备了向更高层级迈进的基础条件。经开区发展面临着三大机遇：一是北京携手张家口举办2022年冬奥会。2022年冬奥会雪上项目的主赛场是崇礼区，经开区作城市中心区同样也是冬奥会的重要接待服务区，在国际奥委会和国家、省、市支持下，短时间内将建设一批世界级的配套设施，在多个层面享受项目、资金、政策等支持。在京张高铁通车后，将成为联接北京与崇礼两个比赛场馆的的重要中转站和交通枢纽，与北京同城化的优势明显。二是张家口建设可再生能源示范区。国家通过张家口建设可再生能源示范区规划，张家口市可再生能源示范区规划明确，五个核心功能区中的可再生能源创新城、可再生能源综合商务区、高端装备制造区将在经开区建设，有利于充分享受国家财政补贴、税收优惠、用地倾斜政策，加快发展可再生能源、智能电网、新能源汽车、新材料、现代服务业等新兴产业。三是京津冀协同发展。我区区位优越、交通便捷，已经构筑起纵横交错、四通八达的现代化立体交通网。打造了“一区多园”多个项目建设平台，有效提升了产业承载能力。同时，我区处于京津冀协同发展一核、双城、三轴、四区、多节点的主轴线上，有利于在京津冀协同发展大势中承接产业转移和接受政策辐射。"},
+    {"type": "text", "text": "经开区发展具有五大优势：一是区位条件独特。位于张家口市的中心城区，城市四周被南山、西山、东山、望山等产业园区环绕，是主城区服务、辐射周边产业园区的核心节点。二是交通畅通便捷。城市核心区距宁远机场仅9公里，已经开通到成都、哈尔滨、厦门、上海等一线城市的直达航班；高铁站位于全区中心区域，是我国北方东西大动脉上的重要枢纽。三是发展空间广阔。城市规划范围内可开发用地面积近70平方公里，包括15平方公里的高铁以南区域和38.9平方公里的洋河新区，特别是沙岭子镇、东山产业园的划归，进一步拓宽了城市发展空间。四是生态环境良好。辖区内有清水河和洋河以及多个大型人工湖和主题公园，规划实施了占地3000亩的森林公园、太子山和凤凰山山体公园等生态绿化工程，是市区生态环境最好的区域。五是行政服务便捷高效。经开区是河北省唯一具有市级行政管理权限的开发区，在全市率先成立行政审批局，开启了“一枚印章管审批，审批不见面，最多跑一次”的“绿色通道”。作为全市综合改革试点，“网上政府、身边政府”和城市规划建设管理运营等一批改革在我区先行先试，为推动发展释放更多红利，营造了良好的营商环境。"}
+]
+k_chengche = [
+    {"type": "title", "text": "乘车安排"},
+    {"type": "left", "text": "一、时间"},
+    {"type": "text", "text": "&&&&&&&&&&&&&&&&"},
+    {"type": "left", "text": "二、内容"},
+    {"type": "text", "text": "巴拉巴拉"},
+    {"type": "left", "text": "三、乘客"},
+    {"type": "text", "text": "555555555555122412412"},
+    {"type": "text", "text": "51251235"},
+    {"type": "text", "text": "535135"},
+]
 @b.route("/MP_verify_TTH4vMTo8zLwTLXd.txt", methods=["GET"])
 def wxyanzheng():
     return render_template("MP_verify_TTH4vMTo8zLwTLXd.txt")
@@ -36,41 +97,45 @@ def wxyanzheng():
 @b.route("/", methods=["GET"])
 @b.route("/index", methods=["GET"])
 def index():
-    return render_template("index.html")
+    kwarg = {"title": k_title, "city": k_title_city}
+    return render_template("index.html", **kwarg)
 
 @b.route("/timeanpai", methods=["GET"])
 def timeanpai():
-    return render_template("timeanpai.html")
+    kwarg = {"title": k_title_sub, "time": k_time}
+    return render_template("timeanpai.html", **kwarg)
 
 @b.route("/weather", methods=["GET"])
 def weather():
-    return render_template("weather.html")
+    kwarg = {"title": k_title_sub}
+    return render_template("weather.html", **kwarg)
     
 @b.route("/huiyixuzhi", methods=["GET"])
 def huiyixuzhi():
-    return render_template("huiyixuzhi.html")
+    kwarg = {"title": k_title_sub, "xuzhi": k_xuzhi}
+    return render_template("huiyixuzhi.html", **kwarg)
 
 @b.route("/zuowei", methods=["GET"])
 def zuowei():
-    return render_template("zuowei.html")
+    kwarg = {"title": k_title_sub, "img": k_zuowei}
+    return render_template("zuowei.html", **kwarg)
 
 @b.route("/chengche", methods=["GET"])
 def chengche():
-    return render_template("chengche.html")
+    kwarg = {"title": k_title_sub, "chengche":k_chengche}
+    return render_template("chengche.html", **kwarg)
 
-@b.route("/wanquan", methods=["GET"])
+@b.route("/city", methods=["GET"])
 def wanquan():
-    return render_template("wanquan.html")
+    kwarg = {"title": k_title_sub, "jianjie": k_jianjie}
+    return render_template("city.html", **kwarg)
 
-@b.route("/huaian", methods=["GET"])
-def huaian():
-    return render_template("huaian.html")
 
 @b.route("/zuoweiimage", methods=["GET"])
 def zuoweiimage():
     import base64
     img_stream = ''
-    with open("app/static/zuoweibiao.png", 'r') as img_f:
+    with open("app/static/座位表.jpg", 'r') as img_f:
         img_stream = img_f.read()
         img_stream = base64.b64encode(img_stream)
     return img_stream

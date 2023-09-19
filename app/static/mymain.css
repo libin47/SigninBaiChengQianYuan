@@ -7,6 +7,10 @@ page {
     --KongQueLan: #0eb0c9;
 
 }
+@font-face{
+font-family: Kaiti;
+src: url("static/STKAITI.TTF");
+}
 html{
     font-size: 16px;
 }
@@ -677,6 +681,20 @@ form {
     text-indent: 2rem;
     padding-bottom: 0.3rem;
 }
+
+.huiyixuzhi > .city-left{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-family: "Kaiti";
+}
+.huiyixuzhi > .city-text{
+    text-indent: 2rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-family: "Kaiti";
+}
+
 .huiyixuzhi > .text > .bold{
     
     color: rgb(0, 0, 0);

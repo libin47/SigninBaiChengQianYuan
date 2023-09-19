@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
     <title>百城千园行-会议须知</title>
-    <link rel="stylesheet" type="text/css" href="/static/mymain.css?v=072106">
+    <link rel="stylesheet" type="text/css" href="/static/mymain.css?v=091912">
 
 </head>
 <body>
@@ -18,29 +18,20 @@
         </svg>
         <img class="logo" src="../static/百城千园行.png"/>
         <a class="head-text">
-            <div class="head-text-main">百城千园行-万全站</div>
+            <div class="head-text-main">{{title}}</div>
             <div class="head-text-sub">会议须知</div>
         </a>
     </div>
     <div class="huiyixuzhi">
-        <div class="title">会议须知</div>
-        <div class="left">尊敬的各位代表:</div>
-        <div class="text">您好!欢迎您来参加工业互联网一体化进园区进企业“百城千园行”活动暨企业数字化转型发展推进行动（万全站），为确保会议的顺利进行，请您关注以下事项。</div>
-        <div class="left">一、严格遵守会议纪律</div>
-        <div class="text">1、会议开始后，请将手机关闭或置于静音状态，保持会场安静，不得在会场内接打电话，不得随意走动。</div>
-        <div class="text">2、会场内请勿吸烟，保持会场清洁。</div>
-        <div class="text">3、会场内摄像、录音统一由会务组安排。</div>
-        <div class="text">4、与会人员会议期间如需帮助请与会务组联系，会务人员联系方式如下:</div>
-        <div class="text">会务经理: 王鸿鹏18603232927</div>
-        <div class="text">酒店经理: 何秀峰15930331001</div>
-        <div class="left">二、会议时间和地点</div>
-        <div class="text">1、会议时间:</div>
-        <div class="text">2023年7月31日</div>
-        <div class="text">2、会议地点:</div>
-        <div class="text">张家口市万全区禾久集团二楼会议室(万全区孔家庄镇滨河西路11号)</div>
-        <div class="text">3、就餐地点：</div>
-        <div class="text">禾久集团一楼大厅</div>
-
+        {% for cc in xuzhi %}
+			{% if cc["type"]=="title" %}
+			<div class="title">{{cc["text"]}}</div>
+			{% elif cc["type"]=="left" %}
+			<div class="left">{{cc["text"]}}</div>
+            {% else %}
+			<div class="text">{{cc["text"]}}</div>
+            {% endif %}
+		{% endfor %}
 
     </div>
     <footer>

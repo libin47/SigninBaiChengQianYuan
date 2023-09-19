@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
     <title>百城千园行-乘车安排</title>
-    <link rel="stylesheet" type="text/css" href="/static/mymain.css?v=072106">
+    <link rel="stylesheet" type="text/css" href="/static/mymain.css?v=091912">
 
 </head>
 <body>
@@ -18,11 +18,20 @@
         </svg>
         <img class="logo" src="../static/百城千园行.png"/>
         <a class="head-text">
-            <div class="head-text-main">百城千园行-万全站</div>
+            <div class="head-text-main">{{title}}</div>
             <div class="head-text-sub">乘车安排</div>
         </a>
     </div>
     <div class="huiyixuzhi">
+        {% for cc in chengche %}
+			{% if cc["type"]=="title" %}
+			<div class="title">{{cc["text"]}}</div>
+			{% elif cc["type"]=="left" %}
+			<div class="left">{{cc["text"]}}</div>
+            {% else %}
+			<div class="text">{{cc["text"]}}</div>
+            {% endif %}
+		{% endfor %}
         <div class="title">乘车安排</div>
         <div class="left">一、时间:</div>
         <div class="text">14:00准时出发</div>
@@ -39,7 +48,6 @@
         <div class="text">冀G 31107</div>
         <div class="left">五、联络员</div>
         <div class="text">康斌 18603238676</div>
-
 
 
     </div>
