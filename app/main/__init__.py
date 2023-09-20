@@ -70,7 +70,7 @@ k_xuzhi = [
     {"type": "text", "text": "2、会议地点:"},
     {"type": "text", "text": "张家口市经开区联通大楼六楼多功能会议室（河北省张家口市高新区敬业街）"},
     {"type": "text", "text": "3、就餐地点:"},
-    {"type": "text", "text": "张家口国际大酒店一楼"},
+    {"type": "text", "text": "张家口国际大酒店二楼"},
 ]
 k_jianjie = [
     {"type": "title", "text": "张家口经开区简介"},
