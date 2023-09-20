@@ -34,7 +34,7 @@ k_title_city = "（经开区站）"
 k_title_sub = "百城千园行-经开区站"
 k_local = "张家口市经开区联通大楼六楼多功能会议室"
 k_elocal = "张家口国际大酒店一楼"
-k_zuowei = "../static/座位表.jpg"
+k_zuowei = "../static/座位表.png"
 k_time = [
     {"type": "main", "text": "9月21日-上午"},
     {"time":"08:00-09:00", "text":"张家口市经开区联通大楼六楼多功能会议室报道"},
@@ -135,7 +135,7 @@ def wanquan():
 def zuoweiimage():
     import base64
     img_stream = ''
-    with open("app/static/座位表.jpg", 'r') as img_f:
+    with open("app/static/座位表.png", 'r') as img_f:
         img_stream = img_f.read()
         img_stream = base64.b64encode(img_stream)
     return img_stream
