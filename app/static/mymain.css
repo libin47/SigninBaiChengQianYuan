@@ -705,6 +705,8 @@ form {
     justify-content: center;
     font-size: 1.5rem;
     font-weight: bold;
+    padding-left: 0;
+    padding-right: 0;
 }
 .zuoweiimage{
     padding-top: 1rem;
