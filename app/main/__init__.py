@@ -94,7 +94,7 @@ k_chengche = [
     {"type": "left", "text": "一、时间"},
     {"type": "text", "text": "9月27日下午14:00"},
     {"type": "left", "text": "二、内容"},
-    {"type": "text", "text": "嘉宾由河北省张家口市康保县中共康保县委党校前楼会议厅前门集体乘车赴河北恒太皮具股份有限公司、张家口皇世食品有限公司"},
+    {"type": "text", "text": "嘉宾由河北省张家口市康保县中共康保县委党校前楼会议厅前门集体乘车赴河北凯阔食品集团股份有限公司、张家口皇世食品有限公司"},
     {"type": "left", "text": "三、乘客"},
     {"type": "text", "text": "联通雄安产业互联网有限公司专家 "},
     {"type": "text", "text": "浙江大华技术股份有限公司专家 "},
@@ -104,9 +104,9 @@ k_chengche = [
     {"type": "text", "text": "康保县发展和改革局主要负责人"},
     {"type": "text", "text": "康保县联通主要负责人"},
     {"type": "left", "text": "四、引导车"},
-    {"type": "text", "text": "冀G 31107 "},
+    {"type": "text", "text": "冀GE1990 "},
     {"type": "left", "text": "五、联络员"},
-    {"type": "text", "text": "薛大伟 18603235802"},
+    {"type": "text", "text": "闫雅楠 18531318133"},
 ]
 
 @b.route("/MP_verify_TTH4vMTo8zLwTLXd.txt", methods=["GET"])
