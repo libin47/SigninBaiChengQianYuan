@@ -95,7 +95,7 @@ k_chengche = [
     {"type": "text", "text": "塞北管理区发展和改革局主要负责人"},
     {"type": "text", "text": "沽源县联通主要负责人"},
     {"type": "left", "text": "四、引导车"},
-    {"type": "text", "text": "冀G 31107 "},
+    {"type": "text", "text": "G71658"},
     {"type": "left", "text": "五、联络员"},
     {"type": "text", "text": "常昊宇 18603233291"},
 ]
